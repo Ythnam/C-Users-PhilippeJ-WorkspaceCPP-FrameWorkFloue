@@ -76,7 +76,7 @@ namespace core
 	template <class T>
 	void UnaryExpressionModel<T>::SetOperand(Expression<T>* _operand)
 	{
-		operand=*_operand
+		operand=*_operand;
 	}
 
 }
