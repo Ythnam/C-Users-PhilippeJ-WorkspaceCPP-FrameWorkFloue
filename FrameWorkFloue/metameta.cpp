@@ -6,7 +6,7 @@
 //============================================================================
 
 #include <iostream>
-#include "ValueModel.h"
+#include "Core/ValueModel.h"
 
 using namespace std;
 using namespace core;
