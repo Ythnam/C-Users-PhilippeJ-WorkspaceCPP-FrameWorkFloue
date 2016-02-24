@@ -1,37 +1,83 @@
 /*
  * UnaryExpressionModel.h
  *
- *  Created on: 2 févr. 2016
- *      Author: PhilippeJ
+ *  Created on: 9 févr. 2016
+ *      Author: Mathieu
  */
+#ifndef UNARYEXPRESSIONMODEL_H
+#define UNARYEXPRESSIONMODEL_H
+#include "UnaryExpression.h"
 
-#ifndef UNARYEXPRESSIONMODEL_H_
-#define UNARYEXPRESSIONMODEL_H_
 
-namespace core{
-template <class T>
-class UnaryExpressionModel : public core::Expression<T>, core::UnaryExpression<T>{
+namespace core
+{
 
-private : UnaryExpression<T> oper;
-		  Expression<T> operand;
+	template <class T>
+	class UnaryExpressionModel:public Expression<T>, public UnaryExpression<T>
+	{
 
-public : T evaluate();
-		 T evaluate(Expression);
+	public:
+		UnaryExpressionModel(UnaryExpression<T>* =NULL, Expression<T>* =NULL);
 
-};
+		T evaluate() const;
+		T evaluate(Expression<T>*) const;
 
-template <class T>
-T evaluate(){
-	if(operand != null){
-		return evaluate(operand);
+		UnaryExpression<T>* GetOperator();
+		Expression<T>* GetOperand();
+		void SetOperator(UnaryExpression<T>*);
+		void SetOperand(Expression<T>*);
+
+
+	private :
+		UnaryExpression<T>* ope;
+		Expression<T>* operand;
+
+	};
+
+	template <class T>
+	UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _ope, Expression<T>* _operand):
+	ope(_ope),operand(_operand)
+	{}
+
+	template <class T>
+	T UnaryExpressionModel<T>::evaluate() const
+	{
+		if ( operand!=NULL)
+			return evaluate( operand);
+		return NULL;
 	}
-}
 
-template <class T>
-T evaluate(Expression o){
-	if(oper != null){
-		return oper.evaluate(operand);
+	template <class T>
+	T UnaryExpressionModel<T>::evaluate(Expression<T>* o) const
+	{
+		if (ope!=NULL)
+			return ope->evaluate(o);
+		return NULL;
 	}
+
+	template <class T>
+	UnaryExpression<T>* UnaryExpressionModel<T>::GetOperator()
+	{
+		return ope;
+	}
+
+	template <class T>
+	Expression<T>* UnaryExpressionModel<T>::GetOperand()
+	{
+		return operand;
+	}
+
+	template <class T>
+	void UnaryExpressionModel<T>::SetOperator(UnaryExpression<T>* _ope)
+	{
+		ope=*_ope;
+	}
+
+	template <class T>
+	void UnaryExpressionModel<T>::SetOperand(Expression<T>* _operand)
+	{
+		operand=*_operand
+	}
+
 }
-}
-#endif /* UNARYEXPRESSIONMODEL_H_ */
+#endif
