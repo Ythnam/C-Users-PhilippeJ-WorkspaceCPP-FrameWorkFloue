@@ -29,14 +29,14 @@ namespace core
 
 
 	private :
-		UnaryExpression<T>* operator;
+		UnaryExpression<T>* ope;
 		Expression<T>* operand;
 
 	};
 
 	template <class T>
 	UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _ope, Expression<T>* _operand):
-	operator(_ope),operand(_operand)
+	ope(_ope),operand(_operand)
 	{}
 
 	template <class T>
@@ -70,7 +70,7 @@ namespace core
 	template <class T>
 	void UnaryExpressionModel<T>::SetOperator(UnaryExpression<T>* _ope)
 	{
-		operator=*_ope;
+		ope=*_ope;
 	}
 
 	template <class T>
