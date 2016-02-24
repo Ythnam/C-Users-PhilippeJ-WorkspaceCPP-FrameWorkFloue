@@ -22,7 +22,7 @@ template<class T>
 T AndMin<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
 	T l = left->evaluate();
 	T r = right->evaluate();
-	return (l==r) ? l : r;
+	return (l <= r) ? l : r;
 }
 }
 #endif /* ANDMIN_H_ */
