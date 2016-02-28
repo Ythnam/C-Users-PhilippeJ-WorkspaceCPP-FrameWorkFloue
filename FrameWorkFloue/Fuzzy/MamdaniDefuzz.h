@@ -13,7 +13,7 @@ namespace fuzzy{
 template <class T>
 class MamdaniDefuzz : public core::BinaryExpression{
 
-public : virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
+public : virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const = 0;
 
 };
 }

@@ -16,5 +16,10 @@ class NotMinus1 : public fuzzy::Not{
 public : virtual T evaluate(core::Expression<T>*) const;
 
 };
+
+template <class T>
+T NotMinus1<T>::evaluate(core::Expression<T>* o)const{
+	return 1 - o->evaluate();
+}
 }
 #endif /* NOTMINUS1_H_ */

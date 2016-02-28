@@ -18,6 +18,10 @@ public : virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
 };
 
+template <class T>
+T CogDefuzz<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
+ // A faire
+}
 }
 
 #endif /* COGDEFUZZ_H_ */
