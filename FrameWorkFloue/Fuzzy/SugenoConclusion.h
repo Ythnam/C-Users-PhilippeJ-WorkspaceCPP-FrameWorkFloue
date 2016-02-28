@@ -13,7 +13,7 @@ namespace core{
 template <class T>
 class SugenoConclusion : public core::NaryExpression<T>{
 
-public : T evaluate(core::Expression<T>*[]) const;
+public : T evaluate(core::Expression<T>**) const;
 
 private : T* coeff;
 

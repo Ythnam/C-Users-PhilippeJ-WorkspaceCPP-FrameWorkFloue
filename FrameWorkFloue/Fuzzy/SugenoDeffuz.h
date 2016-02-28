@@ -13,7 +13,7 @@ namespace fuzzy{
 template <class T>
 class SugenoDeffuz : public core::NaryExpression<T>{
 
-public : T evaluate(core::Expression<T>*[]) const;
+public : T evaluate(core::Expression<T>**) const;
 
 };
 }

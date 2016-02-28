@@ -13,19 +13,19 @@ namespace core
 {
 
 	template <class T>
-	class BinaryExpressionModel:public Expression<T>, public BinaryExpression<T>
+	class BinaryExpressionModel:public core::Expression<T>, public core::BinaryExpression<T>
 	{
 
 	public:
-		BinaryExpressionModel(BinaryExpression<T>* =NULL, Expression<T>* =NULL);
+		BinaryExpressionModel(core::BinaryExpression<T>* =NULL, core::Expression<T>* =NULL);
 
 		T evaluate() const;
-		T evaluate(Expression<T>*,Expression<T>*) const;
+		T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
-		BinaryExpression<T>* GetOperator();
-		Expression<T>* GetOperand();
-		void SetOperator(BinaryExpression<T>*);
-		void SetOperand(Expression<T>*);
+		core::BinaryExpression<T>* GetOperator();
+		core::Expression<T>* GetOperand();
+		void SetOperator(core::BinaryExpression<T>*);
+		void SetOperand(core::Expression<T>*);
 
 
 	private :
@@ -43,7 +43,7 @@ namespace core
 	T BinaryExpressionModel<T>::evaluate() const
 	{
 		if ( operand!=NULL)
-			return evaluate( operand);
+			return evaluate(operand);
 		return NULL;
 	}
 

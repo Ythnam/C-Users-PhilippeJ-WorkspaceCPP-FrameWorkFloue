@@ -13,7 +13,7 @@ namespace core{
 template <class T>
 class NaryExpression<T>{
 
-public : T evaluate(core::Expression<T>*[]) const = 0;
+public : T evaluate(core::Expression<T>**) const = 0;
 
 };
 }
