@@ -17,5 +17,9 @@ public : virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
 };
 
+template <class T>
+T AggPlus<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
+	return left->evaluate() + right->evaluate();
+}
 }
 #endif /* AGGPLUS_H_ */

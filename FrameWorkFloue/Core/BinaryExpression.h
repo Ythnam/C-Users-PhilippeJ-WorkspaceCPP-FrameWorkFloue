@@ -17,9 +17,4 @@ public : virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
 
 };
 }
-
-template<class T>
-T evaluate(core::Expression<T>* left, core::Expression<T>* right){
-
-}
 #endif /* BINARYEXPRESSION_H_ */
