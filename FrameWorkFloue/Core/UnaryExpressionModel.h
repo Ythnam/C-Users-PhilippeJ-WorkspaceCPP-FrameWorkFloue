@@ -9,16 +9,11 @@
 #include "UnaryExpression.h"
 
 
-namespace core
-{
+namespace core{
+template <class T>
+class UnaryExpressionModel:public Expression<T>, public UnaryExpression<T>{
 
-	template <class T>
-	class UnaryExpressionModel:public Expression<T>, public UnaryExpression<T>
-	{
-
-	public:
-		UnaryExpressionModel(UnaryExpression<T>* =NULL, Expression<T>* =NULL);
-
+public:	UnaryExpressionModel(UnaryExpression<T>* =NULL, Expression<T>* =NULL);
 		T evaluate() const;
 		T evaluate(Expression<T>*) const;
 
@@ -27,57 +22,56 @@ namespace core
 		void SetOperator(UnaryExpression<T>*);
 		void SetOperand(Expression<T>*);
 
+private : UnaryExpression<T>* ope;
+		  Expression<T>* operand;
 
-	private :
-		UnaryExpression<T>* ope;
-		Expression<T>* operand;
+};
 
-	};
+template <class T>
+UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _ope, Expression<T>* _operand):ope(_ope),operand(_operand){
 
-	template <class T>
-	UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _ope, Expression<T>* _operand):
-	ope(_ope),operand(_operand)
-	{}
+}
 
-	template <class T>
-	T UnaryExpressionModel<T>::evaluate() const
-	{
-		if ( operand!=NULL)
-			return evaluate( operand);
-		return NULL;
-	}
+template <class T>
+T UnaryExpressionModel<T>::evaluate() const
+{
+	if ( operand!=NULL)
+		return evaluate( operand);
+	return NULL;
+}
 
-	template <class T>
-	T UnaryExpressionModel<T>::evaluate(Expression<T>* o) const
-	{
-		if (ope!=NULL)
-			return ope->evaluate(o);
-		return NULL;
-	}
+template <class T>
+T UnaryExpressionModel<T>::evaluate(Expression<T>* o) const{
 
-	template <class T>
-	UnaryExpression<T>* UnaryExpressionModel<T>::GetOperator()
-	{
-		return ope;
-	}
+	if (ope!=NULL)
+		return ope->evaluate(o);
+	return NULL;
+}
 
-	template <class T>
-	Expression<T>* UnaryExpressionModel<T>::GetOperand()
-	{
-		return operand;
-	}
+template <class T>
+UnaryExpression<T>* UnaryExpressionModel<T>::GetOperator(){
 
-	template <class T>
-	void UnaryExpressionModel<T>::SetOperator(UnaryExpression<T>* _ope)
-	{
+	return ope;
+
+}
+
+template <class T>
+Expression<T>* UnaryExpressionModel<T>::GetOperand(){
+
+	return operand;
+}
+
+template <class T>
+void UnaryExpressionModel<T>::SetOperator(UnaryExpression<T>* _ope){
+
 		ope=*_ope;
-	}
 
-	template <class T>
-	void UnaryExpressionModel<T>::SetOperand(Expression<T>* _operand)
-	{
-		operand=*_operand;
-	}
+}
 
+template <class T>
+void UnaryExpressionModel<T>::SetOperand(Expression<T>* _operand){
+
+	operand=*_operand;
+}
 }
 #endif
