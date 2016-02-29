@@ -35,9 +35,11 @@ UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _ope, Expressi
 template <class T>
 T UnaryExpressionModel<T>::evaluate() const
 {
+
 	if ( operand!=NULL)
 		return evaluate( operand);
 	return NULL;
+
 }
 
 template <class T>
@@ -46,6 +48,7 @@ T UnaryExpressionModel<T>::evaluate(Expression<T>* o) const{
 	if (ope!=NULL)
 		return ope->evaluate(o);
 	return NULL;
+
 }
 
 template <class T>
@@ -59,6 +62,7 @@ template <class T>
 Expression<T>* UnaryExpressionModel<T>::GetOperand(){
 
 	return operand;
+
 }
 
 template <class T>
@@ -72,6 +76,7 @@ template <class T>
 void UnaryExpressionModel<T>::SetOperand(Expression<T>* _operand){
 
 	operand=*_operand;
+
 }
 }
 #endif
