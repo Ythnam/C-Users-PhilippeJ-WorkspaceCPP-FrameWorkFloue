@@ -7,12 +7,13 @@
 
 #ifndef NOT_H_
 #define NOT_H_
-#include "Core/UnaryExpression.h"
+#include "../Core/UnaryExpression.h"
 
 namespace fuzzy{
 template <class T>
-class Not : public core::UnaryExpression{
-
+class Not : public core::UnaryExpression<T>{
+public:
+		virtual T evaluate(core::Expression<T>*) const=0;
 };
 }
 #endif /* NOT_H_ */

@@ -10,6 +10,7 @@
 #include "Core/UnaryExpressionModel.h"
 #include "Core/BinaryExpressionModel.h"
 #include "Fuzzy/AndMin.h"
+#include "Fuzzy/NotMinus1.h"
 
 using namespace std;
 using namespace core;
@@ -27,6 +28,13 @@ int main() {
 	val_ptr2=&val2;
 	val_ptr2->setValue(30);
 	cout<<val_ptr2->evaluate()<< endl;
+
+	fuzzy::NotMinus1<double> opmin;
+	UnaryExpressionModel<double>* unary_ptr=0;
+	UnaryExpressionModel<double> uem(&opmin,val_ptr);
+	unary_ptr=&uem;
+	cout<<unary_ptr->GetOperand()->evaluate()<<endl;
+	cout<<unary_ptr->GetOperator()->evaluate(val_ptr)<<endl;
 
 	fuzzy::AndMin<double> opAnd;
 	BinaryExpressionModel<double>* binary_ptr=0;
