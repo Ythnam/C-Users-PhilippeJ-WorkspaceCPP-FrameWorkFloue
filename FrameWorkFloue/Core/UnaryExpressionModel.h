@@ -69,7 +69,7 @@ Expression<T>* UnaryExpressionModel<T>::GetOperand(){
 template <class T>
 void UnaryExpressionModel<T>::SetOperator(UnaryExpression<T>* _ope){
 
-	ope=*_ope;
+	ope=_ope;
 
 }
 

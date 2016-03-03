@@ -7,17 +7,24 @@
 
 #ifndef COGDEFUZZ_H_
 #define COGDEFUZZ_H_
-#include "Core/BinaryExpression.h"
+#include "../Core/BinaryExpression.h"
+#include "MamdaniDefuzz.h"
 
 
 namespace fuzzy{
 template <class T>
 class CogDefuzz : public fuzzy::MamdaniDefuzz{
 
-public : virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
+public :
+	CogDefuzz();
+	virtual ~CogDefuzz(){};
+	virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
 };
-
+template <class T>
+CogDefuzz<T>::CogDefuzz()
+	{
+	}
 template <class T>
 T CogDefuzz<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
  // A faire

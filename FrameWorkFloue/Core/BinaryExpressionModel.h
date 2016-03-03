@@ -78,7 +78,7 @@ void BinaryExpressionModel<T>::SetRight(Expression<T>* _right)
 template <class T>
 void BinaryExpressionModel<T>::SetOperator(BinaryExpression<T>* _ope)
 {
-	ope=*_ope;
+	ope=_ope;
 }
 
 template <class T>

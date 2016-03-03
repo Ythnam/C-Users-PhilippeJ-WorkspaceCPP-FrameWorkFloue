@@ -11,12 +11,18 @@
 
 namespace fuzzy{
 template <class T>
-class ThenMin : public fuzzy::Then{
+class ThenMin : public fuzzy::Then<T>{
 
-public : T evaluate(core::Expression<T>*, core::Expression<T>*) const;
+public :
+	ThenMin();
+	virtual	~ThenMin(){};
+	virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
 };
-
+template <class T>
+ThenMin<T>::ThenMin()
+{
+}
 template <class T>
 T ThenMin<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
 	T l = left->evaluate();

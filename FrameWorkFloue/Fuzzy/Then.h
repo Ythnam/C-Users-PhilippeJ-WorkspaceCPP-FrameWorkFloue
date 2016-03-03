@@ -7,12 +7,14 @@
 
 #ifndef THEN_H_
 #define THEN_H_
-#include "Core/BinaryExpression.h"
+#include "../Core/BinaryExpression.h"
 
 namespace fuzzy{
 template<class T>
-class Then : public core::BinaryExpression{
-
+class Then : public core::BinaryExpression<T>
+{
+	public :
+		virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const=0;
 };
 }
 #endif /* THEN_H_ */

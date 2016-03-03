@@ -11,37 +11,49 @@
 #include "Core/BinaryExpressionModel.h"
 #include "Fuzzy/AndMin.h"
 #include "Fuzzy/NotMinus1.h"
+#include "Fuzzy/OrMax.h"
+#include "Fuzzy/ThenMin.h"
 
 using namespace std;
 using namespace core;
 
 int main() {
-	ValueModel<double> val(0);
+	ValueModel<double> val(0.8);
 	ValueModel<double>* val_ptr;
 	val_ptr=&val;
-	val_ptr->setValue(50);
-	cout<<val_ptr->evaluate()<< endl;
+	val_ptr->setValue(0.7);
+	cout<<val_ptr->evaluate()<< " step 1"<< endl;
 
-
-	ValueModel<double> val2(20);
-	ValueModel<double>* val_ptr2;
+	ValueModel<double> val2(0.9);
+	ValueModel<double>* val_ptr2=0;
 	val_ptr2=&val2;
-	val_ptr2->setValue(30);
-	cout<<val_ptr2->evaluate()<< endl;
+	val_ptr2->setValue(0.5);
+	//cout<<val_ptr2->evaluate()<< endl;
 
-	fuzzy::NotMinus1<double> opmin;
+
+	fuzzy::OrMax<double> opOr;
+	fuzzy::ThenMin<double> opThen;
+	fuzzy::NotMinus1<double> opNot;
+	fuzzy::AndMin<double> opAnd;
 	UnaryExpressionModel<double>* unary_ptr=0;
-	UnaryExpressionModel<double> uem(&opmin,val_ptr);
+	UnaryExpressionModel<double> uem(&opNot,val_ptr);
 	unary_ptr=&uem;
 	cout<<unary_ptr->GetOperand()->evaluate()<<endl;
 	cout<<unary_ptr->GetOperator()->evaluate(val_ptr)<<endl;
 
-	fuzzy::AndMin<double> opAnd;
-	BinaryExpressionModel<double>* binary_ptr=0;
+
+	BinaryExpressionModel<double>* binary_ptr;
 	BinaryExpressionModel<double> bem(&opAnd,val_ptr,val_ptr2);
 	binary_ptr=&bem;
 	cout<<binary_ptr->GetLeft()->evaluate()<<" et "<< binary_ptr->GetRight()->evaluate()<<endl;
 	cout<<binary_ptr->GetOperator()->evaluate(val_ptr,val_ptr2)<<endl;
 
-	return 0;
+
+	binary_ptr->SetOperator(&opThen);
+		cout<<binary_ptr->GetOperator()->evaluate(val_ptr,val_ptr2)<<endl;
+
+	binary_ptr->SetOperator(&opOr);
+		cout<<binary_ptr->GetOperator()->evaluate(val_ptr,val_ptr2)<<endl;
+
+		return 0;
 }

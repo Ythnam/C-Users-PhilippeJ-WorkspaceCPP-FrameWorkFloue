@@ -13,10 +13,16 @@ namespace fuzzy{
 template <class T>
 class AggPlus : public fuzzy::Agg<T>{
 
-public : virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
+public :
+	AggPlus();
+	virtual ~AggPlus(){};
+	virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
 };
-
+template <class T>
+AggPlus<T>::AggPlus()
+	{
+	}
 template <class T>
 T AggPlus<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
 	return left->evaluate() + right->evaluate();
