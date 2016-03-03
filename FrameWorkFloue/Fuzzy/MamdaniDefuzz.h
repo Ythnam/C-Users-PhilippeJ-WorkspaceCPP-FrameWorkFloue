@@ -8,7 +8,7 @@
 #ifndef MAMDANIDEFUZZ_H_
 #define MAMDANIDEFUZZ_H_
 
-#include "Core/BinaryExpression.h"
+#include "../Core/BinaryExpression.h"
 #include "Fuzzy/Evaluator.h"
 
 namespace fuzzy{

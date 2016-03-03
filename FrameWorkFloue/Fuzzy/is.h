@@ -7,12 +7,12 @@
 
 #ifndef IS_H_
 #define IS_H_
-#include "Core/UnaryExpression.h"
+#include "../Core/UnaryExpression.h"
 
 namespace fuzzy{
 template <class T>
 class is : public core::UnaryExpression{
-
+	virtual T evaluate(core::Expression<T>*) const=0;
 };
 }
 #endif /* IS_H_ */

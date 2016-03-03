@@ -16,6 +16,7 @@ class isTriangle : public fuzzy::is<T>{
 private : T min, mid, max;
 
 public : isTriangle(const T&, const T&, const T&);
+		 virtual ~isTriangle(){};
 		 virtual T evaluate(core::Expression<T>*) const;
 };
 

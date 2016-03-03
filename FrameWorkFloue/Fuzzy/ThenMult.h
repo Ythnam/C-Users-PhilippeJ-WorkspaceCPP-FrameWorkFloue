@@ -13,10 +13,16 @@ namespace fuzzy{
 template <class T>
 class ThenMult : public fuzzy::Then{
 
-public : T evaluate(core::Expression<T>*, core::Expression<T>*) const;
+public :
+	ThenMult();
+	virtual ~ThenMult(){};
+	virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
 };
-
+template <class T>
+ThenMult<T>::AndMin()
+	{
+	}
 template <class T>
 T ThenMult<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
 	return left->evaluate() * right->evaluate();
