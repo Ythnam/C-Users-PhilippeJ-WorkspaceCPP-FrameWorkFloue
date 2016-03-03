@@ -7,12 +7,14 @@
 
 #ifndef AND_H_
 #define AND_H_
-#include "Core/BinaryExpression.h"
+#include "../Core/BinaryExpression.h"
 
 namespace fuzzy{
 template <class T>
-class And : public core::BinaryExpression<T>{
-
-};
+		class And:public core::BinaryExpression<T>
+		{
+			public :
+				virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const=0;
+		};
 }
 #endif /* AND_H_ */

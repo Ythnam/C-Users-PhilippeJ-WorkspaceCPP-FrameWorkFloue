@@ -14,21 +14,22 @@ template <class T>
 class UnaryExpressionModel:public Expression<T>, public UnaryExpression<T>{
 
 public:	UnaryExpressionModel(UnaryExpression<T>* =NULL, Expression<T>* =NULL);
-		T evaluate() const;
-		T evaluate(Expression<T>*) const;
+T evaluate() const;
+T evaluate(Expression<T>*) const;
 
-		UnaryExpression<T>* GetOperator();
-		Expression<T>* GetOperand();
-		void SetOperator(UnaryExpression<T>*);
-		void SetOperand(Expression<T>*);
+UnaryExpression<T>* GetOperator();
+Expression<T>* GetOperand();
+void SetOperator(UnaryExpression<T>*);
+void SetOperand(Expression<T>*);
 
 private : UnaryExpression<T>* ope;
-		  Expression<T>* operand;
+Expression<T>* operand;
 
 };
 
 template <class T>
-UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _ope, Expression<T>* _operand):ope(_ope),operand(_operand){
+UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _ope, Expression<T>* _operand):
+ope(_ope),operand(_operand){
 
 }
 
@@ -68,7 +69,7 @@ Expression<T>* UnaryExpressionModel<T>::GetOperand(){
 template <class T>
 void UnaryExpressionModel<T>::SetOperator(UnaryExpression<T>* _ope){
 
-		ope=*_ope;
+	ope=*_ope;
 
 }
 
