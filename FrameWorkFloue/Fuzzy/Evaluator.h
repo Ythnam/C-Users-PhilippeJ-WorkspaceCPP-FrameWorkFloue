@@ -21,12 +21,12 @@ public : class EvalFunc {
 };
 
 typedef pair<vector<T>,vector<T> > Shape;
-static Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc&);
+static Shape buildShape(const T& min, const T& max, const T& step, EvalFunc& valueOf);
 
 };
 
 template <class T>
-typename Evaluator<T>::Shape Evaluator<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) {
+typename Evaluator<T>::Shape Evaluator<T>::buildShape(const T& min, const T& max, const T& step, EvalFunc& f) {
 	vector<T> x, y;
 	for (T i= min ;i <= max ;i += step){
 		y.push_back(f(i));

@@ -16,7 +16,7 @@ template <class T>
 class MamdaniDefuzz : public core::BinaryExpression{
 
 public : virtual T evaluate(core::Expression<T>*, core::Expression<T>*);
-		 virtual T defuzz(Shape) const = 0;
+		 virtual T defuzz(Evaluator::buildShape(const T&, const T&, const T&, EvalFunc& )) const = 0;
 
 };
 
