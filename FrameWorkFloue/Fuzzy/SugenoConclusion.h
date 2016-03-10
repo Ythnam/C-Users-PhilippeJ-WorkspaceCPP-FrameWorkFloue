@@ -20,3 +20,6 @@ private : T* coeff;
 };
 }
 #endif /* FUZZY_SUGENOCONCLUSION_H_ */
+
+/*
+ */
