@@ -14,7 +14,8 @@ namespace core{
 template <class T>
 class ExpressionFactory{
 
-public : ~ExpressionFactory();
+public : ExpressionFactory();
+		 ~ExpressionFactory();
 		 core::Expression<T>* Hold(core::Expression<T>*) const;
 		 core::Expression<T>* newUnary(core::UnaryExpression<T>*, core::Expression<T>*);
 		 core::Expression<T>* newBinary(core::BinaryExpression<T>*, core::Expression<T>*, core::Expression<T>*);
@@ -22,6 +23,11 @@ public : ~ExpressionFactory();
 private : std::set<core::Expression<T>*> memory;
 };
 
+template <class T>
+core::ExpressionFactory<T>::ExpressionFactory(){
+	std::set<core::Expression<T>*> memory;
+
+}
 template <class T>
 core::ExpressionFactory<T>::~ExpressionFactory(){
 
