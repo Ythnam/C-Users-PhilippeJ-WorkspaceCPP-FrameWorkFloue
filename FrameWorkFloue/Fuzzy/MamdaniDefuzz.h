@@ -17,14 +17,15 @@ class MamdaniDefuzz : public core::BinaryExpression{
 
 public :
 	virtual ~MamdaniDefuzz(){};
-	virtual T evaluate(core::Expression<T>*, core::Expression<T>*);
+	virtual T evaluate(const T& min, const T& max, const T& step, core::Expression<T>*);
 	virtual T defuzz(Evaluator<T>::buildShape(const T&, const T&, const T&, core::Expression<T>& )) const = 0;
 
 };
 
 template <class T>
-T MamdaniDefuzz<T>::evaluate(core::Expression<T>* outPutVar, core::Expression<T>* fuzzySystem){
-	return defuzz(Evaluator<T>::buildShape(const T&, const T&, const T&, core::Expression<T>& ));
+T MamdaniDefuzz<T>::evaluate(const T& min, const T& max, const T& step, core::Expression<T>* fuzzySystem){
+
+	return defuzz(Evaluator<T>::buildShape(min,max,step,fuzzySystem ));
 }
 }
 #endif /* MAMDANIDEFUZZ_H_ */
