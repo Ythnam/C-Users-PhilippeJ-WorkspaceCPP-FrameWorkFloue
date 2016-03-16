@@ -21,9 +21,10 @@ public : core::Expression<T>* newAnd(core::Expression<T>*, core::Expression<T>*)
 		 core::Expression<T>* newNot(core::Expression<T>*);
 		 core::Expression<T>* newIs(fuzzy::is, core::Expression<T>*);
 
-		 void changeAnd(fuzzy::And);
-		 void changeOr(fuzzy::Or);
-		 void changeThen(fuzzy::Then);
+		 void changeAnd(fuzzy::And<T>*);
+		 void changeOr(fuzzy::Or<T>*);
+		 void changeThen(fuzzy::Then<T>*);
+		 void changeAgg(fuzzy::Agg<T>*);
 
 private :
 		 /*
@@ -83,5 +84,24 @@ core::Expression<T>* FuzzyFactory<T>::newIs(fuzzy::is isSomething, core::Express
 
 }
 
+template <class T>
+void FuzzyFactory<T>::changeAnd(fuzzy::And<T>* _and){
+	andBE->setTarget(_and);
+}
+
+template <class T>
+void FuzzyFactory<T>::changeOr(fuzzy::Or<T>* _or){
+	orBE->setTarget(_or);
+}
+
+template <class T>
+void FuzzyFactory<T>::changeThen(fuzzy::Then<T>* _then){
+	thenBE->setTarget(_then);
+}
+
+template <class T>
+void FuzzyFactory<T>::changeAgg(fuzzy::Agg<T>* _agg){
+	aggBE->setTarget(_agg);
+}
 }
 #endif /* CORE_FUZZYFACTORY_H_ */
