@@ -14,6 +14,10 @@
 #include "Fuzzy/OrMax.h"
 #include "Fuzzy/ThenMin.h"
 
+
+// Extension logique numerique
+//
+//
 using namespace std;
 using namespace core;
 

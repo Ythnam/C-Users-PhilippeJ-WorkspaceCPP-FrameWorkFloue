@@ -14,14 +14,20 @@ template <class T>
 class BinaryShadowExpression : public core::BinaryExpression<T>{
 
 public : BinaryShadowExpression(core::BinaryExpression<T>* = NULL);
-		 T evaluate(core::Expression<T>*, core::Expression<T>*) const;
+		void setTarget(core::BinaryExpression<T>);
+		T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
-private : core::BinaryExpression target;
+private : core::BinaryExpression<T> target;
 };
 
 template <class T>
 BinaryShadowExpression<T>::BinaryShadowExpression(core::BinaryExpression<T>* _target):target(_target){
 
+}
+
+template <class T>
+void BinaryShadowExpression<T>::setTarget(core::BinaryExpression<T> _target){
+	target = _target;
 }
 
 template <class T>
