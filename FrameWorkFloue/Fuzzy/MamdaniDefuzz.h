@@ -18,7 +18,7 @@ class MamdaniDefuzz : public core::BinaryExpression{
 public :
 	virtual ~MamdaniDefuzz(){};
 	virtual T evaluate(const T& min, const T& max, const T& step, core::Expression<T>*);
-	virtual T defuzz(Evaluator<T>::buildShape(const T&, const T&, const T&, core::Expression<T>& )) const = 0;
+	virtual T defuzz(Evaluator<T>::buildShape(const T&, const T&, const T&, core::Expression<T>* )) const = 0;
 
 };
 

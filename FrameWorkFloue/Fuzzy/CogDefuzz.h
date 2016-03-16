@@ -18,17 +18,20 @@ class CogDefuzz : public fuzzy::MamdaniDefuzz{
 public :
 	CogDefuzz();
 	virtual ~CogDefuzz(){};
-	virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const;
-
+	virtual T defuzz(const T&, const T&, const T&, core::Expression<T>* ) const;
+private :
+	double min,max,step;
 };
 template <class T>
-CogDefuzz<T>::CogDefuzz()
-	{
-	}
-template <class T>
-T CogDefuzz<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
- // A faire
+CogDefuzz<T>::CogDefuzz():
+min(0),max(0),step(0)
+{
 }
+template <class T>
+T CogDefuzz<T>::defuzz(const T& min, const T& max, const T& step, core::Expression<T>* fuzzySystem) const{
+ // A faire cog = sum((value)*coeff)/ sum(coeff*entity)
+}
+
 }
 
 #endif /* COGDEFUZZ_H_ */
