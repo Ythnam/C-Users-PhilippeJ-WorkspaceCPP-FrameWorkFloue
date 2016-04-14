@@ -9,29 +9,41 @@
 #define COGDEFUZZ_H_
 #include "../Core/BinaryExpression.h"
 #include "MamdaniDefuzz.h"
+#include "Evaluator.h"
+#include <vector>
+#include <utility>
 
+namespace fuzzy {
+template<class T>
+class CogDefuzz: public fuzzy::MamdaniDefuzz<T> {
 
-namespace fuzzy{
-template <class T>
-class CogDefuzz : public fuzzy::MamdaniDefuzz{
-
-public :
+public:
 	CogDefuzz();
-	virtual ~CogDefuzz(){};
-	virtual T defuzz(const T&, const T&, const T&, core::Expression<T>* ) const;
-private :
-	double min,max,step;
+	virtual ~CogDefuzz() {
+	}
+	;
+	virtual T defuzz(const typename Evaluator<T>::Shape&) const;
+private:
+	double min, max, step;
 };
-template <class T>
-CogDefuzz<T>::CogDefuzz():
-min(0),max(0),step(0)
-{
-}
-template <class T>
-T CogDefuzz<T>::defuzz(const T& min, const T& max, const T& step, core::Expression<T>* fuzzySystem) const{
- // A faire cog = sum((value)*coeff)/ sum(coeff*entity)
+template<class T>
+CogDefuzz<T>::CogDefuzz() :
+		min(0), max(0), step(0) {
 }
 
-}
+template<class T>
+T CogDefuzz<T>::defuzz(const typename Evaluator<T>::Shape& shape) const {
+	T firstSum = 0, secondSum = 0;
+	// calcul du barycentre
+	for (T i = min; i < max; i += step) {
+		firstSum += shape.second.at(i) * shape.first.at(i);
+		secondSum += shape.second.at(i);
+	}
 
+	T resultat = firstSum / secondSum;
+
+	return resultat;
+}
+}
+//algorithm.h
 #endif /* COGDEFUZZ_H_ */

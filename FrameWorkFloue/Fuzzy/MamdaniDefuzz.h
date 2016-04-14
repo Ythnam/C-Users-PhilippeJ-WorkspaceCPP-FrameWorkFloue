@@ -9,23 +9,18 @@
 #define MAMDANIDEFUZZ_H_
 
 #include "../Core/BinaryExpression.h"
-#include "Fuzzy/Evaluator.h"
+#include "Evaluator.h"
 
 namespace fuzzy{
 template <class T>
-class MamdaniDefuzz : public core::BinaryExpression{
+class MamdaniDefuzz : public core::BinaryExpression<T>{
 
 public :
 	virtual ~MamdaniDefuzz(){};
 	virtual T evaluate(const T& min, const T& max, const T& step, core::Expression<T>*);
-	virtual T defuzz(Evaluator<T>::buildShape(const T&, const T&, const T&, core::Expression<T>* )) const = 0;
+	virtual T defuzz(const typename Evaluator<T>::Shape&) const = 0;
 
 };
 
-template <class T>
-T MamdaniDefuzz<T>::evaluate(const T& min, const T& max, const T& step, core::Expression<T>* fuzzySystem){
-
-	return defuzz(Evaluator<T>::buildShape(min,max,step,fuzzySystem ));
-}
 }
 #endif /* MAMDANIDEFUZZ_H_ */

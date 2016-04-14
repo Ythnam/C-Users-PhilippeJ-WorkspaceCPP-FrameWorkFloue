@@ -8,7 +8,9 @@
 #ifndef FUZZY_SUGENOCONCLUSION_H_
 #define FUZZY_SUGENOCONCLUSION_H_
 #include "NaryExpression.h"
-
+//Zi c'est lacombinaison lineaire des entrés
+//wi c'est l'evaluation de la partie antécédante:
+//->
 namespace core{
 template <class T>
 class SugenoConclusion : public core::NaryExpression<T>{

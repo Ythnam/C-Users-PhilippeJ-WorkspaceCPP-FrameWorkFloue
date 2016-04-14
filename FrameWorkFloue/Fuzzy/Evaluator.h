@@ -9,37 +9,38 @@
 #define FUZZY_EVALUATOR_H_
 
 #include <vector>
+#include <utility>
 #include "../Core/Expression.h"
 
 using namespace std;
-template <class T>
-class Evaluator
-{
-public :
-	typedef pair<vector<T>,vector<T> > Shape;
-	static Shape buildShape(const T& min, const T& max, const T& step, core::Expression<T>& valueOf);
+namespace fuzzy {
+template<class T>
+class Evaluator {
+public:
+	typedef pair<vector<T>, vector<T> > Shape;
+	static Shape buildShape(const T& min, const T& max, const T& step,
+			core::Expression<T>& valueOf);
 
-template <class T>
-class EvalFunc {
+	template<class U>
+	class EvalFunc {
 
-	public : virtual T operator () (const T&)=0;
+	public:
+		virtual T operator ()(const T&)=0;
+
+	};
 
 };
 
-
-
-};
-
-template <class T>
-typename Evaluator<T>::Shape Evaluator<T>::buildShape(const T& min, const T& max, const T& step, core::Expression<T>& f) {
+template<class T>
+typename Evaluator<T>::Shape Evaluator<T>::buildShape(const T& min,
+		const T& max, const T& step, core::Expression<T>& f) {
 	vector<T> x, y;
-	for (T i= min ;i <= max ;i += step){
+	for (T i = min; i <= max; i += step) {
 		y.push_back(f(i));
 		x.push_back(i);
 	}
-	return Shape(x,y);
+	return Shape(x, y);
 }
-
-
+}
 
 #endif /* FUZZY_EVALUATOR_H_ */

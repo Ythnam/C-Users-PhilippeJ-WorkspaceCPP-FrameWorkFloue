@@ -13,6 +13,7 @@
 #include "Fuzzy/NotMinus1.h"
 #include "Fuzzy/OrMax.h"
 #include "Fuzzy/ThenMin.h"
+#include "Fuzzy/CogDefuzz.h"
 
 
 // Extension logique numerique
@@ -39,6 +40,7 @@ int main() {
 	fuzzy::ThenMin<double> opThen;
 	fuzzy::NotMinus1<double> opNot;
 	fuzzy::AndMin<double> opAnd;
+	fuzzy::CogDefuzz<double> opDefuzz;
 	UnaryExpressionModel<double>* unary_ptr=0;
 	UnaryExpressionModel<double> uem(&opNot,val_ptr);
 	unary_ptr=&uem;
