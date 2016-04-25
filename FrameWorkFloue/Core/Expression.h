@@ -8,11 +8,12 @@
 #ifndef EXPRESSION_H_
 #define EXPRESSION_H_
 
-namespace core{
-template <class T>
-class Expression{
+namespace core {
+template<class T>
+class Expression {
 
-public : virtual T evaluate() const = 0;
+public:
+	virtual T evaluate() const = 0;
 
 };
 
