@@ -13,7 +13,9 @@ namespace core{
 template <class T>
 class NaryExpression{
 
-public : T evaluate(core::Expression<T>**) const = 0;
+public :
+	virtual ~NaryExpression(){};
+	virtual T evaluate(core::Expression<T>**) const = 0;
 
 };
 }
