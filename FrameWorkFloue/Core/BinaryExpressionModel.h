@@ -18,7 +18,7 @@ class BinaryExpressionModel:public Expression<T>,public BinaryExpression<T>
 
 public :
 	BinaryExpressionModel(BinaryExpression<T>* =NULL,Expression<T>* =NULL, Expression<T>* =NULL);
-	~BinaryExpressionModel(){};
+	virtual ~BinaryExpressionModel(){};
 
 	Expression<T>* GetLeft() const;
 	Expression<T>* GetRight() const;

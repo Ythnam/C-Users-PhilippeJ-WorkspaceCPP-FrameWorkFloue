@@ -16,6 +16,7 @@ class UnaryShadowExpression : public core::UnaryExpression<T>{
 private : core::UnaryExpression target;
 
 public : UnaryShadowExpression(core::UnaryExpression<T>* = NULL);
+
 		 T evaluate(core::Expression<T>*) const;
 
 };

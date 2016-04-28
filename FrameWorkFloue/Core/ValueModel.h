@@ -19,6 +19,7 @@ class ValueModel : public Expression<T>
 public :
 	ValueModel();
 	ValueModel(const T&);
+	virtual ~ValueModel(){};
 	T evaluate() const;
 	void setValue(const T&);
 

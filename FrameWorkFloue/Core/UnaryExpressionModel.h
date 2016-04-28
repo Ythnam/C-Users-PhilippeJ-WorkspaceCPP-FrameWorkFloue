@@ -14,6 +14,7 @@ class UnaryExpressionModel: public Expression<T>, public UnaryExpression<T> {
 
 public:
 	UnaryExpressionModel(UnaryExpression<T>* = NULL, Expression<T>* = NULL);
+	virtual ~UnaryExpressionModel(){};
 	T evaluate() const;
 	T evaluate(Expression<T>*) const;
 
