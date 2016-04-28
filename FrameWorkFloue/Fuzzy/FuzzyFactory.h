@@ -53,12 +53,14 @@ private:
 };
 
 template<class T>
-fuzzy::FuzzyFactory<T>::FuzzyFactory(Not<T> _notUE,
-		And<T> _andBE,
-		Or<T> _orBE,
-		Then<T> _thenBE,
-		Agg<T> _aggBE,
-		CogDefuzz<T> _defuzzBE):notUE(core::UnaryShadowExpression<T>* _notUE),andBE(core::BinaryShadowExpression<T>* _andBE),orBE(core::BinaryShadowExpression<T>* _orBE),thenBE(core::BinaryShadowExpression<T>* _thenBE), aggBE(core::BinaryShadowExpression<T>* _aggBE),defuzzBE(core::BinaryShadowExpression<T>* _defuzzBE){
+fuzzy::FuzzyFactory<T>::FuzzyFactory(Not<T> _notUE, And<T> _andBE, Or<T> _orBE,
+		Then<T> _thenBE, Agg<T> _aggBE, CogDefuzz<T> _defuzzBE) :
+		notUE(core::UnaryShadowExpression < T > *_notUE), andBE(
+				core::BinaryShadowExpression < T > *_andBE), orBE(
+				core::BinaryShadowExpression < T > *_orBE), thenBE(
+				core::BinaryShadowExpression < T > *_thenBE), aggBE(
+				core::BinaryShadowExpression < T > *_aggBE), defuzzBE(
+				core::BinaryShadowExpression < T > *_defuzzBE) {
 }
 
 template<class T>
