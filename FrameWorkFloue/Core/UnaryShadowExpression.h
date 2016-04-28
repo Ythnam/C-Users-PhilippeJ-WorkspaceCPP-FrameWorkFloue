@@ -9,26 +9,30 @@
 #define UNARYSHADOWEXPRESSION_H_
 #include "UnaryExpression.h"
 
-namespace core{
-template <class T>
-class UnaryShadowExpression : public core::UnaryExpression<T>{
+namespace core {
+template<class T>
+class UnaryShadowExpression: public core::UnaryExpression<T> {
 
-private : core::UnaryExpression target;
+private:
+	core::UnaryExpression<T> target;
 
-public : UnaryShadowExpression(core::UnaryExpression<T>* = NULL);
+public:
+	UnaryShadowExpression(core::UnaryExpression<T>* = NULL);
 
-		 T evaluate(core::Expression<T>*) const;
+	T evaluate(core::Expression<T>*) const;
 
 };
 
-template <class T>
-UnaryShadowExpression<T>::UnaryShadowExpression(core::UnaryExpression<T>* _target):target(_target){
+template<class T>
+UnaryShadowExpression<T>::UnaryShadowExpression(
+		core::UnaryExpression<T>* _target) :
+		target(_target) {
 
 }
 
-template <class T>
-T UnaryShadowExpression<T>::evaluate(core::Expression<T>* o)const{
-	if(target != NULL){
+template<class T>
+T UnaryShadowExpression<T>::evaluate(core::Expression<T>* o) const {
+	if (target != NULL) {
 		return target.evaluate(o);
 	}
 }
