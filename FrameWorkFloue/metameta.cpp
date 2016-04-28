@@ -24,7 +24,7 @@ using namespace std;
 using namespace core;
 
 int main() {
-
+	/*
 	 ValueModel<double> val(0.8);
 	 ValueModel<double>* val_ptr;
 	 val_ptr = &val;
@@ -55,49 +55,47 @@ int main() {
 	 << binary_ptr->GetRight()->evaluate() << endl;
 	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
 
-	 binary_ptr->SetOperator(&opThen);
+	 binary_ptr->SetOperator(&opDefuzz);
 	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
+	 */
 	//final test
-	/*
 	//operators
-	fuzzy::NotMinus1 opNot;
-	fuzzy::AndMin opAnd;
-	fuzzy::OrMax opOr;
-	fuzzy::ThenMin opThen;
-	fuzzy::CogDefuzz opDefuzz;
-	*/
+	fuzzy::NotMinus1<double> opNot;
+	fuzzy::AndMin<double> opAnd;
+	fuzzy::OrMax<double> opOr;
+	fuzzy::ThenMin<double> opThen;
+	fuzzy::CogDefuzz<double> opDefuzz;
+
 	//fuzzy expression factory
-	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opOr, &opDefuzz);
+	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opDefuzz);
 	//membership function
-//	fuzzy::isTriangle poor(-5, 0, 5);
-//	fuzzy::isTriangle good(0, 5, 10);
-//	fuzzy::isTriangle excellent(5, 10, 15);
-//	fuzzy::isTriangle cheap(0, 5, 10);
-//	fuzzy::isTriangle average(10, 15, 20);
-//	fuzzy::isTriangle generous(20, 25, 30);
+	fuzzy::isTriangle<double> poor(-5, 0, 5);
+	fuzzy::isTriangle<double> good(0, 5, 10);
+	fuzzy::isTriangle<double> excellent(5, 10, 15);
+	fuzzy::isTriangle<double> cheap(0, 5, 10);
+	fuzzy::isTriangle<double> average(10, 15, 20);
+	fuzzy::isTriangle<double> generous(20, 25, 30);
+	//unary_ptr->SetOperator(&poor);
+	//cout <<"test unary" << unary_ptr->GetOperator()->evaluate(val_ptr) << endl;
 	/*
-	//values
-	Value
-	service(,0);
-	Value food(0);
-	Value tips(0);
-	Expression *r = f.NewAgg(
-			f.NewAgg(
-					f.NewThen(f.NewIs(&service, &poor), f.NewIs(&tips, &cheap)),
-					f.NewThen(f.NewIs(&service, &good),
-							f.NewIs(&tips, &average))),
-							f.NewThen(f.NewIs(&service, &excellent),
-									f.NewIs(&tips, &generous)));
+	 //values
+	 Value
+	 service(,0);
+	 Value food(0);
+	 Value tips(0);
+	 */
+	//Expression *r = f.NewAgg(	f.NewAgg(f.NewThen(f.NewIs(&service, &poor), f.NewIs(&tips, &cheap)),f.NewThen(f.NewIs(&service, &good),f.NewIs(&tips, &average))),f.NewThen(f.NewIs(&service, &excellent),f.NewIs(&tips, &generous)));
 	//defuzzification
-	Expression *system = f.NewDefuzz(&tips, r, 0, 25, 1);
-	//apply input
-	float s;
-	while (true) {
-		cout << "service : ";
-		cin >> s;
-		service.SetValue(s);
-		cout << "tips -> " << system->Evaluate() << endl;
-	}
-	*/
+	/*
+	 Expression *system = f.NewDefuzz(&tips, r, 0, 25, 1);
+	 //apply input
+	 float s;
+	 while (true) {
+	 cout << "service : ";
+	 cin >> s;
+	 service.SetValue(s);
+	 cout << "tips -> " << system->Evaluate() << endl;
+	 }
+	 */
 	return 0;
 }
