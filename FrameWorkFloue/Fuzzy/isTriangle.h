@@ -21,7 +21,8 @@ public : isTriangle(const T&, const T&, const T&);
 };
 
 template <class T>
-isTriangle<T>::isTriangle(const T& _min, const T& _mid, const T& _max):min(_min),mid(_mid),max(_max){
+isTriangle<T>::isTriangle(const T& _min, const T& _mid, const T& _max):
+min(_min),mid(_mid),max(_max){
 
 }
 

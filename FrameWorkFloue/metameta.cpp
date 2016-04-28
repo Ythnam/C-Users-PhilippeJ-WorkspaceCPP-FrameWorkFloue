@@ -14,6 +14,8 @@
 #include "Fuzzy/OrMax.h"
 #include "Fuzzy/ThenMin.h"
 #include "Fuzzy/CogDefuzz.h"
+#include "Fuzzy/isTriangle.h"
+#include "Fuzzy/FuzzyFactory.h"
 
 // Extension logique numerique
 //
@@ -55,11 +57,6 @@ int main() {
 
 	 binary_ptr->SetOperator(&opThen);
 	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
-
-	 binary_ptr->SetOperator(&opDefuzz);
-	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
-
-
 	//final test
 	/*
 	//operators
@@ -68,15 +65,17 @@ int main() {
 	fuzzy::OrMax opOr;
 	fuzzy::ThenMin opThen;
 	fuzzy::CogDefuzz opDefuzz;
+	*/
 	//fuzzy expression factory
-	//fuzzy::FuzzyExpressionFactory f(&opNot, &opAnd, &opOr, &opThen, &opOr, &opDefuzz);
+	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opOr, &opDefuzz);
 	//membership function
-	fuzzy::IsTriangle poor(-5, 0, 5);
-	fuzzy::IsTriangle good(0, 5, 10);
-	fuzzy::IsTriangle excellent(5, 10, 15);
-	fuzzy::IsTriangle cheap(0, 5, 10);
-	fuzzy::IsTriangle average(10, 15, 20);
-	fuzzy::IsTriangle generous(20, 25, 30);
+//	fuzzy::isTriangle poor(-5, 0, 5);
+//	fuzzy::isTriangle good(0, 5, 10);
+//	fuzzy::isTriangle excellent(5, 10, 15);
+//	fuzzy::isTriangle cheap(0, 5, 10);
+//	fuzzy::isTriangle average(10, 15, 20);
+//	fuzzy::isTriangle generous(20, 25, 30);
+	/*
 	//values
 	Value
 	service(,0);

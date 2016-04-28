@@ -9,9 +9,11 @@
 #define IS_H_
 #include "../Core/UnaryExpression.h"
 
-namespace fuzzy{
-template <class T>
-class is : public core::UnaryExpression{
+namespace fuzzy {
+template<class T>
+class is: public core::UnaryExpression<T> {
+public:
+	virtual ~is() {};
 	virtual T evaluate(core::Expression<T>*) const=0;
 };
 }

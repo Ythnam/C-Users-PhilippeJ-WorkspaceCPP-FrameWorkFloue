@@ -9,13 +9,15 @@
 #define CORE_EXPRESSIONFACTORY_H_
 #include <set>
 #include "Expression.h"
+#include "UnaryExpressionModel.h"
+#include "BinaryExpressionModel.h"
 
 namespace core{
 template <class T>
-class ExpressionFactory{
+class ExpressionFactory : public Expression<T>{
 
 public : ExpressionFactory();
-		 ~ExpressionFactory();
+		 virtual ~ExpressionFactory();
 		 core::Expression<T>* Hold(core::Expression<T>*) const;
 		 core::Expression<T>* newUnary(core::UnaryExpression<T>*, core::Expression<T>*);
 		 core::Expression<T>* newBinary(core::BinaryExpression<T>*, core::Expression<T>*, core::Expression<T>*);
@@ -47,14 +49,14 @@ core::Expression<T>* ExpressionFactory<T>::Hold(core::Expression<T>* exp) const{
 template <class T>
 core::Expression<T>* ExpressionFactory<T>::newUnary(core::UnaryExpression<T>* uExp, core::Expression<T>* exp){
 
-	return new UnaryExpressionModel(uExp, exp);
+	return core::UnaryExpressionModel<T>::UnaryExpressionModel(uExp, exp);
 
 }
 
 template <class T>
 core::Expression<T>* ExpressionFactory<T>::newBinary(core::BinaryExpression<T>* bExp, core::Expression<T>* exp1, core::Expression<T>* exp2){
 
-	return new BinaryExpressionModel(bExp, exp1, exp2);
+	return core::BinaryExpressionModel<T>::BinaryExpressionModel(bExp, exp1, exp2);
 
 }
 

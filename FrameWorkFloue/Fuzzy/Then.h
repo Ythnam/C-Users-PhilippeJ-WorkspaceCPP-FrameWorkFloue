@@ -14,6 +14,7 @@ template<class T>
 class Then : public core::BinaryExpression<T>
 {
 	public :
+	virtual ~Then(){};
 		virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const=0;
 };
 }

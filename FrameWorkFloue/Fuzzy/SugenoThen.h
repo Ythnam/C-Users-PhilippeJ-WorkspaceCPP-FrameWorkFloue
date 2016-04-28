@@ -13,7 +13,9 @@ namespace fuzzy{
 template <class T>
 class SugenoThen : public fuzzy::Then{
 
-	public : T evaluate(core::Expression<T>*, core::Expression<T>*) const;
+	public :
+	virtual ~SugenoThen(){};
+	T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 	T getPremiseValue() const;
 	void setPremiseValue(T);
 	private : T premiseValue;
