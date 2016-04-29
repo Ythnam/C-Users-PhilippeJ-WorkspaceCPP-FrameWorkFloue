@@ -16,8 +16,8 @@ class NaryExpressionModel : public core::NaryExpression<T>, public core::Express
 public : T evaluate() const;
 		 T evaluate(core::Expression<T>**) const;
 
-private : Expression* operands;
-		  NaryExpression ope;
+private : Expression<T>** operands;
+		  NaryExpression<T>* ope;
 };
 
 template <class T>
