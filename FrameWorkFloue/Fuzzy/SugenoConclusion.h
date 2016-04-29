@@ -43,7 +43,7 @@ void fuzzy::SugenoConclusion<T>::setCoeff(std::vector<T*> _coeff){
 }
 
 template<class T>
-T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*> tabExp){
+T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*> tabExp) const {
 	if(this->coeff.size() == tabExp.size()){
 		int i = 0;
 		std::vector<T> save; // on sauvegarde les wi*zi dedans
