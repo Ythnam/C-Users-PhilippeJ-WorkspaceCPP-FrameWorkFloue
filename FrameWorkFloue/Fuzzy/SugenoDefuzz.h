@@ -5,20 +5,23 @@
  *      Author: PhilippeJ
  */
 
-#ifndef FUZZY_SUGENODEFFUZ_H_
-#define FUZZY_SUGENODEFFUZ_H_
+#ifndef FUZZY_SUGENODEFUZZ_H_
+#define FUZZY_SUGENODEFUZZ_H_
 #include "NaryExpression.h"
 
 namespace fuzzy{
 template <class T>
 class SugenoDeffuz : public core::NaryExpression<T>{
 
-public : T evaluate(core::Expression<T>**) const;
+public :
+	virtual ~SugenoDefuzz(){};
+	T evaluate(vector<core::Expression<T>*>) const;
 
 };
+
 }
 
 
 
 
-#endif /* FUZZY_SUGENODEFFUZ_H_ */
+#endif /* FUZZY_SUGENODEFUZZ_H_ */

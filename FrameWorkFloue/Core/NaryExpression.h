@@ -9,6 +9,7 @@
 #define CORE_NARYEXPRESSION_H_
 #include "Expression.h"
 #include <vector>
+#include "iterator"
 
 namespace core{
 template <class T>

@@ -8,7 +8,6 @@
 #ifndef FUZZY_SUGENOCONCLUSION_H_
 #define FUZZY_SUGENOCONCLUSION_H_
 #include "NaryExpression.h"
-#include "iterator.h"
 //Zi c'est lacombinaison lineaire des entrés
 //wi c'est l'evaluation de la partie antécédante:
 //->
@@ -17,16 +16,56 @@ template <class T>
 class SugenoConclusion : public core::NaryExpression<T>{
 
 public :
-	virtual ~SugenoConclusion(){}
-	virtual T evaluate(std::vector<core::Expression<T>*>) const;
+	virtual ~SugenoConclusion(){};
+	SugenoConclusion(std::vector<T*>);
+	std::vector<T*> getCoeff();
+	void setCoeff(std::vector<T*>);
+	T evaluate(std::vector<core::Expression<T>*>) const;
 
-private : vector<core::Expression<T>*> coeff;
+private : std::vector<T> coeff;
 
 };
 
+
 template<class T>
-T evaluate(std::vector<core::Expression<T>*> tabExp){
-	tabExp::iterator it = tabExp.begin();
+fuzzy::SugenoConclusion<T>::SugenoConclusion(std::vector<T*> _coeff):coeff(_coeff){
+
+}
+
+template<class T>
+std::vector<T*> fuzzy::SugenoConclusion<T>::getCoeff(){
+	return this->coeff();
+}
+
+template<class T>
+void fuzzy::SugenoConclusion<T>::setCoeff(std::vector<T*> _coeff){
+	this->coeff = _coeff;
+}
+
+template<class T>
+T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*> tabExp){
+	if(this->coeff.size() == tabExp.size()){
+		int i = 0;
+		std::vector<T> save; // on sauvegarde les wi*zi dedans
+
+		for(core::Expression<T>* exp : tabExp){
+			//T sauveEvaluate = exp.core::evaluate();
+			save.add(this->coeff.get[i]*exp->evaluate()); //
+			i++; // permet d'itérer sur les coeffs
+		}
+
+		T cumulExp;
+		for(T expSave : save){
+			cumulExp = cumulExp + expSave;
+		}
+
+		return cumulExp;
+
+	} else{
+		std::cout << "error : size " << endl;
+		return null;
+	}
+
 }
 }
 #endif /* FUZZY_SUGENOCONCLUSION_H_ */

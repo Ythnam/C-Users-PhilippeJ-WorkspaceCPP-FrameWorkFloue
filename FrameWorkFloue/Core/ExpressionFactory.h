@@ -26,8 +26,7 @@ private : std::set<core::Expression<T>*> memory;
 };
 
 template <class T>
-core::ExpressionFactory<T>::ExpressionFactory(){
-	std::set<core::Expression<T>*> memory;
+core::ExpressionFactory<T>::ExpressionFactory():memory(){
 
 }
 template <class T>
