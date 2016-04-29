@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Core/ValueModel.h"
 #include "Core/UnaryExpressionModel.h"
+#include "Core/UnaryShadowExpression.h"
 #include "Core/BinaryExpressionModel.h"
 #include "Fuzzy/AndMin.h"
 #include "Fuzzy/NotMinus1.h"
@@ -45,41 +46,46 @@ int main() {
 	 fuzzy::CogDefuzz<double> opDefuzz(0.0,10.0,1.0);
 	 UnaryExpressionModel<double>* unary_ptr = 0;
 	 UnaryExpressionModel<double> uem(&opNot, val_ptr);
+
 	 unary_ptr = &uem;
-	 cout << unary_ptr->GetOperand()->evaluate() << endl;
+	 UnaryShadowExpression<double> usem(unary_ptr);
+	 cout << usem.getTarget()->evaluate(unary_ptr)<<endl;
 	 cout << unary_ptr->GetOperator()->evaluate(val_ptr) << endl;
 
 	 BinaryExpressionModel<double>* binary_ptr;
 	 BinaryExpressionModel<double> bem(&opAnd, val_ptr, val_ptr2);
 	 binary_ptr = &bem;
+	 BinaryShadowExpression<double> bsem(binary_ptr);
 	 cout << binary_ptr->GetLeft()->evaluate() << " et "
 	 << binary_ptr->GetRight()->evaluate() << endl;
-	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
+	 cout << bsem.getTarget()->evaluate(val_ptr, val_ptr2) << endl;
 
 	 binary_ptr->SetOperator(&opDefuzz);
 	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
 	 */
-	//final test
-	//operators
-	fuzzy::NotMinus1<double> opNot;
-	fuzzy::AndMin<double> opAnd;
-	fuzzy::OrMax<double> opOr;
-	fuzzy::ThenMin<double> opThen;
-	fuzzy::AggMax<double> opAgg;
-	fuzzy::CogDefuzz<double> opDefuzz;
 
-	//fuzzy expression factory
-	fuzzy::FuzzyFactory<double> f(opNot, opAnd, opOr, opThen, opAgg, opDefuzz);
-	//membership function
-	fuzzy::isTriangle<double> poor(-5, 0, 5);
-	fuzzy::isTriangle<double> good(0, 5, 10);
-	fuzzy::isTriangle<double> excellent(5, 10, 15);
-	fuzzy::isTriangle<double> cheap(0, 5, 10);
-	fuzzy::isTriangle<double> average(10, 15, 20);
-	fuzzy::isTriangle<double> generous(20, 25, 30);
-	//unary_ptr->SetOperator(&poor);
-	//cout <<"test unary" << unary_ptr->GetOperator()->evaluate(val_ptr) << endl;
-	/*
+	 //final test
+	 //operators
+	 fuzzy::NotMinus1<double> opNot;
+	 fuzzy::AndMin<double> opAnd;
+	 fuzzy::OrMax<double> opOr;
+	 fuzzy::ThenMin<double> opThen;
+	 fuzzy::AggMax<double> opAgg;
+	 fuzzy::CogDefuzz<double> opDefuzz;
+
+
+	 //fuzzy expression factory
+	 fuzzy::FuzzyFactory<double> f(opNot,opAnd, opOr, opThen, opAgg, opDefuzz);
+	 //membership function
+	 fuzzy::isTriangle<double> poor(-5, 0, 5);
+	 fuzzy::isTriangle<double> good(0, 5, 10);
+	 fuzzy::isTriangle<double> excellent(5, 10, 15);
+	 fuzzy::isTriangle<double> cheap(0, 5, 10);
+	 fuzzy::isTriangle<double> average(10, 15, 20);
+	 fuzzy::isTriangle<double> generous(20, 25, 30);
+	 //unary_ptr->SetOperator(&poor);
+	 //cout <<"test unary" << unary_ptr->GetOperator()->evaluate(val_ptr) << endl;
+	 /*
 	 //values
 	 Value
 	 service(,0);

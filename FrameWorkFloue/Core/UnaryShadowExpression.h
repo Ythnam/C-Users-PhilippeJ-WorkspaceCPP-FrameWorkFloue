@@ -14,11 +14,14 @@ template<class T>
 class UnaryShadowExpression: public core::UnaryExpression<T> {
 
 private:
-	core::UnaryExpression<T> target;
+	core::UnaryExpression<T>* target;
 
 public:
-	UnaryShadowExpression(core::UnaryExpression<T>* = NULL);
 
+	UnaryShadowExpression(core::UnaryExpression<T>* = NULL);
+	virtual ~UnaryShadowExpression(){};
+	void setTarget(core::UnaryExpression<T>* );
+	UnaryExpression<T>* getTarget() const;
 	T evaluate(core::Expression<T>*) const;
 
 };
@@ -29,12 +32,20 @@ UnaryShadowExpression<T>::UnaryShadowExpression(
 		target(_target) {
 
 }
+template<class T>
+void UnaryShadowExpression<T>::setTarget(core::UnaryExpression<T>* _target) {
+	 target = _target;
+}
 
 template<class T>
+UnaryExpression<T>* UnaryShadowExpression<T>::getTarget() const {
+	return target;
+}
+template<class T>
 T UnaryShadowExpression<T>::evaluate(core::Expression<T>* o) const {
-	if (target != NULL) {
-		return target.evaluate(o);
-	}
+
+	return target->evaluate(o);
+
 }
 }
 #endif /* UNARYSHADOWEXPRESSION_H_ */
