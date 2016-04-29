@@ -14,7 +14,7 @@ template<class T>
 class BinaryShadowExpression: public core::BinaryExpression<T> {
 
 public:
-	BinaryShadowExpression(core::BinaryExpression<T>* = NULL);
+	BinaryShadowExpression(core::BinaryExpression<T>* );
 	void setTarget(core::BinaryExpression<T>*);
 	BinaryExpression<T>* getTarget() const;
 	T evaluate(core::Expression<T>*, core::Expression<T>*) const;

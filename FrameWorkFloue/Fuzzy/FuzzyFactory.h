@@ -26,7 +26,7 @@ template<class T>
 class FuzzyFactory: public core::ExpressionFactory<T> {
 
 public:
-	FuzzyFactory(Not<T>, And<T>, Or<T>, Then<T>, Agg<T>, CogDefuzz<T>);
+	FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, CogDefuzz<T>*);
 	virtual ~FuzzyFactory();
 	core::Expression<T>* newAnd(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newOr(core::Expression<T>*, core::Expression<T>*);
@@ -42,24 +42,27 @@ public:
 	void changeAgg(fuzzy::Agg<T>*);
 
 private:
-
-	core::BinaryShadowExpression<T>* andBE, orBE, thenBE, aggBE, defuzzBE;
 	core::UnaryShadowExpression<T>* notUE;
+	core::BinaryShadowExpression<T>* andBE, orBE, thenBE, aggBE, defuzzBE;
+
 
 	/*core::BinaryExpressionModel<T>* andBE, orBE, thenBE, aggBE, defuzzBE;
 	 core::UnaryExpressionModel<T>* notUE;*/
 };
 
 template<class T>
-fuzzy::FuzzyFactory<T>::FuzzyFactory(Not<T> _notUE, And<T> _andBE, Or<T> _orBE,
-		Then<T> _thenBE, Agg<T> _aggBE, CogDefuzz<T> _defuzzBE) :
-		notUE(new core::UnaryShadowExpression<T>(_notUE)), andBE(
-				new core::BinaryShadowExpression<T>(_andBE)), orBE(
-				new core::BinaryShadowExpression<T>(_orBE)), thenBE(
-				new core::BinaryShadowExpression<T>(_thenBE)), aggBE(
-				new core::BinaryShadowExpression<T>(_aggBE)), defuzzBE(
-				new core::BinaryShadowExpression<T>(_defuzzBE)) {
-}
+FuzzyFactory<T>::FuzzyFactory(Not<T>* _notUE, And<T>* _andBE,Or<T>* _orBE, Then<T>* _thenBE, Agg<T>* _aggBE, CogDefuzz<T>* _defuzzBE)
+/*		notUE(_notUE),
+		andBE(_andBE),
+		orBE(_orBE),
+		thenBE(_thenBE),
+		aggBE(_aggBE),
+		defuzzBE(_defuzzBE)
+		*/
+
+{
+changeAnd(_andBE);
+	}
 
 template<class T>
 core::Expression<T>* FuzzyFactory<T>::newAnd(core::Expression<T>* left,

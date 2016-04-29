@@ -75,7 +75,7 @@ int main() {
 
 
 	 //fuzzy expression factory
-	 fuzzy::FuzzyFactory<double> f(opNot,opAnd, opOr, opThen, opAgg, opDefuzz);
+	 fuzzy::FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opThen, &opAgg, &opDefuzz);
 	 //membership function
 	 fuzzy::isTriangle<double> poor(-5, 0, 5);
 	 fuzzy::isTriangle<double> good(0, 5, 10);

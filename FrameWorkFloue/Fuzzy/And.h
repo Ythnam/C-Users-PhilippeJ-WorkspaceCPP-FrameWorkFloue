@@ -13,6 +13,7 @@ namespace fuzzy {
 template<class T>
 class And: public core::BinaryExpression<T> {
 public:
+	And(){};
 	virtual ~And() {};
 	virtual T evaluate(core::Expression<T>*, core::Expression<T>*) const=0;
 };
