@@ -27,7 +27,7 @@ class FuzzyFactory: public core::ExpressionFactory<T> {
 
 public:
 	FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, CogDefuzz<T>*);
-	virtual ~FuzzyFactory();
+	virtual ~FuzzyFactory(){};
 	core::Expression<T>* newAnd(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newOr(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newThen(core::Expression<T>*, core::Expression<T>*);
@@ -36,33 +36,36 @@ public:
 	core::Expression<T>* newNot(core::Expression<T>*);
 	core::Expression<T>* newIs(fuzzy::is<T>*, core::Expression<T>*);
 
+	void changeNot(fuzzy::Not<T>*);
 	void changeAnd(fuzzy::And<T>*);
 	void changeOr(fuzzy::Or<T>*);
 	void changeThen(fuzzy::Then<T>*);
 	void changeAgg(fuzzy::Agg<T>*);
+	void changeDefuzz(fuzzy::CogDefuzz<T>*);
 
 private:
 	core::UnaryShadowExpression<T>* notUE;
-	core::BinaryShadowExpression<T>* andBE, orBE, thenBE, aggBE, defuzzBE;
-
+	core::BinaryShadowExpression<T>* andBE;
+	core::BinaryShadowExpression<T>*orBE;
+	core::BinaryShadowExpression<T>*thenBE;
+	core::BinaryShadowExpression<T>*aggBE;
+	core::BinaryShadowExpression<T>* defuzzBE;
 
 	/*core::BinaryExpressionModel<T>* andBE, orBE, thenBE, aggBE, defuzzBE;
 	 core::UnaryExpressionModel<T>* notUE;*/
 };
 
 template<class T>
-FuzzyFactory<T>::FuzzyFactory(fuzzy::Not<T>* _notUE, fuzzy::And<T>* _andBE,fuzzy::Or<T>* _orBE, fuzzy::Then<T>* _thenBE, fuzzy::Agg<T>* _aggBE, fuzzy::CogDefuzz<T>* _defuzzBE)
-		:notUE(_notUE),
-		andBE(_andBE),
-		orBE(_orBE),
-		thenBE(_thenBE),
-		aggBE(_aggBE),
-		defuzzBE(_defuzzBE)
-
-
-{
-//changeAnd(_andBE);
-	}
+FuzzyFactory<T>::FuzzyFactory(fuzzy::Not<T>* _notUE, fuzzy::And<T>* _andBE,
+		fuzzy::Or<T>* _orBE, fuzzy::Then<T>* _thenBE, fuzzy::Agg<T>* _aggBE,
+		fuzzy::CogDefuzz<T>* _defuzzBE) {
+	changeNot(_notUE);
+	changeAnd(_andBE);
+	changeOr(_orBE);
+	changeThen(_thenBE);
+	changeAgg(_aggBE);
+	changeDefuzz(_defuzzBE);
+}
 
 template<class T>
 core::Expression<T>* FuzzyFactory<T>::newAnd(core::Expression<T>* left,
@@ -137,6 +140,14 @@ void FuzzyFactory<T>::changeThen(fuzzy::Then<T>* _then) {
 template<class T>
 void FuzzyFactory<T>::changeAgg(fuzzy::Agg<T>* _agg) {
 	aggBE->setTarget(_agg);
+}
+template<class T>
+void FuzzyFactory<T>::changeNot(fuzzy::Not<T>* _not) {
+	notUE->setTarget(_not);
+}
+template<class T>
+void FuzzyFactory<T>::changeDefuzz(fuzzy::CogDefuzz<T>* _defuzz) {
+	defuzzBE->setTarget(_defuzz);
 }
 
 }
