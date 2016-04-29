@@ -12,6 +12,7 @@
 #include "Fuzzy/AndMin.h"
 #include "Fuzzy/NotMinus1.h"
 #include "Fuzzy/OrMax.h"
+#include "Fuzzy/AggMax.h"
 #include "Fuzzy/ThenMin.h"
 #include "Fuzzy/CogDefuzz.h"
 #include "Fuzzy/isTriangle.h"
@@ -64,10 +65,11 @@ int main() {
 	fuzzy::AndMin<double> opAnd;
 	fuzzy::OrMax<double> opOr;
 	fuzzy::ThenMin<double> opThen;
+	fuzzy::AggMax<double> opAgg;
 	fuzzy::CogDefuzz<double> opDefuzz;
 
 	//fuzzy expression factory
-	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opDefuzz);
+	fuzzy::FuzzyFactory<double> f(opNot, opAnd, opOr, opThen, opAgg, opDefuzz);
 	//membership function
 	fuzzy::isTriangle<double> poor(-5, 0, 5);
 	fuzzy::isTriangle<double> good(0, 5, 10);

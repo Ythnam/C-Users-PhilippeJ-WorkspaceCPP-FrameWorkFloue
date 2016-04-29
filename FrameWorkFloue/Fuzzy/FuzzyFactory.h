@@ -40,8 +40,6 @@ public:
 	void changeOr(fuzzy::Or<T>*);
 	void changeThen(fuzzy::Then<T>*);
 	void changeAgg(fuzzy::Agg<T>*);
-	virtual T evaluate(core::Expression<T>* left,
-			core::Expression<T>* right) const;
 
 private:
 
@@ -133,9 +131,6 @@ template<class T>
 void FuzzyFactory<T>::changeAgg(fuzzy::Agg<T>* _agg) {
 	aggBE->setTarget(_agg);
 }
-template<class T>
-T evaluate(core::Expression<T>* left, core::Expression<T>* right) {
 
-}
 }
 #endif /* CORE_FUZZYFACTORY_H_ */

@@ -14,7 +14,7 @@
 
 namespace core{
 template <class T>
-class ExpressionFactory : public Expression<T>{
+class ExpressionFactory{
 
 public : ExpressionFactory();
 		 virtual ~ExpressionFactory();
