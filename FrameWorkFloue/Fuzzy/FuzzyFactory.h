@@ -51,17 +51,17 @@ private:
 };
 
 template<class T>
-FuzzyFactory<T>::FuzzyFactory(Not<T>* _notUE, And<T>* _andBE,Or<T>* _orBE, Then<T>* _thenBE, Agg<T>* _aggBE, CogDefuzz<T>* _defuzzBE)
-/*		notUE(_notUE),
+FuzzyFactory<T>::FuzzyFactory(fuzzy::Not<T>* _notUE, fuzzy::And<T>* _andBE,fuzzy::Or<T>* _orBE, fuzzy::Then<T>* _thenBE, fuzzy::Agg<T>* _aggBE, fuzzy::CogDefuzz<T>* _defuzzBE)
+		:notUE(_notUE),
 		andBE(_andBE),
 		orBE(_orBE),
 		thenBE(_thenBE),
 		aggBE(_aggBE),
 		defuzzBE(_defuzzBE)
-		*/
+
 
 {
-changeAnd(_andBE);
+//changeAnd(_andBE);
 	}
 
 template<class T>

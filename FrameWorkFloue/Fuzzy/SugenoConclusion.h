@@ -54,7 +54,7 @@ T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*> tabExp)
 			i++; // permet d'itérer sur les coeffs
 		}
 
-		T cumulExp;
+		T cumulExp = 0;
 		for(T expSave : save){
 			cumulExp = cumulExp + expSave;
 		}
