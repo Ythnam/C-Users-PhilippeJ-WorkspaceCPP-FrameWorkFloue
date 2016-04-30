@@ -11,13 +11,24 @@
 
 namespace fuzzy{
 template <class T>
-class SugenoDeffuz : public core::NaryExpression<T>{
+class SugenoDefuzz : public core::NaryExpression<T>{
 
 public :
 	virtual ~SugenoDefuzz(){};
-	T evaluate(vector<core::Expression<T>*>) const;
+	SugenoDefuzz();
+	T evaluate(std::vector<core::Expression<T>*>) const;
 
 };
+
+template<class T>
+fuzzy::SugenoDefuzz<T>::SugenoDefuzz(){
+
+}
+
+template<class T>
+T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*> tabExp) const{
+
+}
 
 }
 

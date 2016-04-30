@@ -15,11 +15,25 @@ class SugenoThen : public fuzzy::Then{
 
 	public :
 	virtual ~SugenoThen(){};
+	SugenoThen(){};
+	SugenoThen(T);
 	T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 	T getPremiseValue() const;
 	void setPremiseValue(T);
-	private : T premiseValue;
+
+	private :
+	T premiseValue;
 };
+
+template<class T>
+fuzzy::SugenoThen<T>::SugenoThen():premiseValue(){
+
+}
+
+template<class T>
+fuzzy::SugenoThen<T>::SugenoThen(T _premiseValue):premiseValue(_premiseValue){
+
+}
 
 template <class T>
 T fuzzy::SugenoThen<T>::getPremiseValue() const{
