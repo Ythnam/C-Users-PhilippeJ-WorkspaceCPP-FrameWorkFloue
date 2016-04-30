@@ -8,10 +8,11 @@
 #define FUZZY_SUGENOTHEN_H_
 
 #include "Then.h"
+#include "NaryExpression.h"
 
 namespace fuzzy{
 template <class T>
-class SugenoThen : public fuzzy::Then{
+class SugenoThen : public fuzzy::Then<T>{
 
 	public :
 	virtual ~SugenoThen(){};
@@ -26,13 +27,21 @@ class SugenoThen : public fuzzy::Then{
 };
 
 template<class T>
-fuzzy::SugenoThen<T>::SugenoThen():premiseValue(){
+fuzzy::SugenoThen<T>::SugenoThen():premiseValue(0){
 
 }
 
 template<class T>
 fuzzy::SugenoThen<T>::SugenoThen(T _premiseValue):premiseValue(_premiseValue){
 
+}
+
+template<class T>
+T fuzzy::SugenoThen<T>::evaluate(core::Expression<T>* coeff, core::Expression<T>* exp) const{
+
+	this->premiseValue = coeff->evaluate();
+
+	return (this->premiseValue*exp->evaluate());
 }
 
 template <class T>
@@ -42,7 +51,8 @@ T fuzzy::SugenoThen<T>::getPremiseValue() const{
 
 template <class T>
 void fuzzy::SugenoThen<T>::setPremiseValue(T _setPremiseValue){
-	setPremiseValue = _setPremiseValue;
+	this->premiseValue = _setPremiseValue;
+}
 }
 
 
