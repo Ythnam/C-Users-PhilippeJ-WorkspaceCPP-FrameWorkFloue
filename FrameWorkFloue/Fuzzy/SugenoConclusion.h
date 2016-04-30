@@ -55,7 +55,7 @@ T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*>* tabExp
 
 		for(core::Expression<T>* exp : tabExp){
 			//T sauveEvaluate = exp.core::evaluate();
-			save.add(this->coeff.get[i]*exp->evaluate()); //
+			save.add(this->coeff.get[i]*(exp)->evaluate()); //
 			i++; // permet d'itérer sur les coeffs
 		}
 
