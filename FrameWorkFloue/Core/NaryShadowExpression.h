@@ -13,17 +13,43 @@ namespace core{
 template <class T>
 class NaryShadowExpression : public core::NaryExpression<T>{
 
-public : T evaluate(core::Expression<T>**) const;
+public :
+	virtual ~NaryShadowExpression(){};
+	NaryShadowExpression();
+	NaryShadowExpression(core::NaryExpression<T>*);
+	T evaluate(std::vector<core::Expression<T>*>*) const;
+	void setTarget(core::NaryExpression<T>*);
+	core::NaryExpression<T>* getTarget() const;
 
-private : NaryExpression target;
+private : core::NaryExpression<T>* target;
 
 };
 
+template<class T>
+core::NaryShadowExpression<T>::NaryShadowExpression():target(){
+
+}
+
+template<class T>
+core::NaryShadowExpression<T>::NaryShadowExpression(core::NaryExpression<T>* _target):target(_target){
+
+}
+
 template <class T>
-T NaryShadowExpression<T>::evaluate(core::Expression<T>** operands) const{
+T core::NaryShadowExpression<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
 	if(target != NULL){
-		return target.evaluate(operands);
+		return target->evaluate(operands);
 	}
+}
+
+template<class T>
+void core::NaryShadowExpression<T>::setTarget(core::NaryExpression<T>* _target){
+	this->target = _target;
+}
+
+template<class T>
+core::NaryExpression<T>* core::NaryShadowExpression<T>::getTarget() const{
+	return this->target;
 }
 }
 
