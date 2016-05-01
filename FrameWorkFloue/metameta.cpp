@@ -21,9 +21,9 @@
 #include "Fuzzy/CogDefuzz.h"
 #include "Fuzzy/isTriangle.h"
 #include "Fuzzy/FuzzyFactory.h"
-#include "Fuzzy/SugenoThen.h"
-#include "Fuzzy/SugenoConclusion.h"
-#include "Fuzzy/SugenoDefuzz.h"
+//#include "Fuzzy/SugenoThen.h"
+//#include "Fuzzy/SugenoConclusion.h"
+//#include "Fuzzy/SugenoDefuzz.h"
 
 // Extension logique numerique
 //
@@ -80,8 +80,7 @@ int main() {
 	fuzzy::CogDefuzz<double> opDefuzz;
 
 	//fuzzy expression factory
-	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opAgg,
-			&opDefuzz);
+	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opAgg,&opDefuzz);
 	//membership function
 	fuzzy::isTriangle<double> poor(-5, 0, 5);
 	fuzzy::isTriangle<double> good(0, 5, 10);
@@ -96,22 +95,28 @@ int main() {
 	ValueModel<double> service(0);
 	ValueModel<double> food(0);
 	ValueModel<double> tips(0);
-	fuzzy::SugenoThen<double> sugeno;
-	fuzzy::SugenoConclusion<double> sugenoC;
-	fuzzy::SugenoDefuzz<double> sugenoD;
-NaryExpressionModel<double>();
+	ValueModel<double>* val_ptrs;
+	ValueModel<double>* val_ptrf;
+	ValueModel<double>* val_ptrt;
+	 val_ptrs = &service;
+	 val_ptrf = &food;
+	 val_ptrt = &tips;
+//	fuzzy::SugenoThen<double> sugeno;
+	//fuzzy::SugenoConclusion<double> sugenoC;
+	//fuzzy::SugenoDefuzz<double> sugenoD;
+	//NaryExpressionModel<double>();
 	//f.NewIs(&tips, &cheap);
-	//Expression<double> *r = f.NewAgg(f.NewAgg(f.NewThen(f.NewIs(&service, &poor), f.NewIs(&tips, &cheap)),f.NewThen(f.NewIs(&service, &good),f.NewIs(&tips, &average))),f.NewThen(f.NewIs(&service, &excellent),f.NewIs(&tips, &generous)));
+	//Expression<double> *r = f.newAgg(f.newAgg(f.newThen(f.newIs(val_ptrs, &poor), f.newIs(val_ptrt, &cheap)),f.newThen(f.newIs(val_ptrs, &good),f.newIs(val_ptrt, &average))),f.newThen(f.newIs(val_ptrs, &excellent),f.newIs(val_ptrt, &generous)));
 	//defuzzification
 
-	// Expression *system = f.NewDefuzz(&tips, r, 0, 25, 1);
+	// Expression<double>* system = f.newDefuzz(val_ptrt, r);
 	 //apply input
 	 float s;
 	 while (true) {
 	 cout << "service : ";
 	 cin >> s;
-	 service.setValue(s);
-	// cout << "tips -> " << system.evaluate() << endl;
+	 val_ptrs->setValue(s);
+	 //cout << "tips -> " << system->evaluate();
 	 };
 
 	return 0;

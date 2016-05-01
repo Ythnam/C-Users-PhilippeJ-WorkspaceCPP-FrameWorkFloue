@@ -8,6 +8,7 @@
 #ifndef UNARYSHADOWEXPRESSION_H_
 #define UNARYSHADOWEXPRESSION_H_
 #include "UnaryExpression.h"
+#include <iostream>
 
 namespace core {
 template<class T>
@@ -34,7 +35,7 @@ UnaryShadowExpression<T>::UnaryShadowExpression(
 }
 template<class T>
 void UnaryShadowExpression<T>::setTarget(core::UnaryExpression<T>* _target) {
-	 target = _target;
+	target = _target;
 }
 
 template<class T>

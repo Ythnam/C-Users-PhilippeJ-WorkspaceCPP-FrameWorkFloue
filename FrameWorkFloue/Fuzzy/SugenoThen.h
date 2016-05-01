@@ -15,8 +15,8 @@ template <class T>
 class SugenoThen : public fuzzy::Then<T>{
 
 	public :
+	SugenoThen();
 	virtual ~SugenoThen(){};
-	SugenoThen(){};
 	SugenoThen(T);
 	T evaluate(core::Expression<T>*, core::Expression<T>*) const;
 	T getPremiseValue() const;

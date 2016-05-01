@@ -9,12 +9,14 @@
 #define UNARYEXPRESSION_H_
 #include "Expression.h"
 
-namespace core{
-template <class T>
-class UnaryExpression{
+namespace core {
+template<class T>
+class UnaryExpression {
 
-public :
-	virtual ~UnaryExpression(){};
+public:
+	virtual ~UnaryExpression() {
+	}
+	;
 	virtual T evaluate(Expression<T>*) const=0;
 
 };

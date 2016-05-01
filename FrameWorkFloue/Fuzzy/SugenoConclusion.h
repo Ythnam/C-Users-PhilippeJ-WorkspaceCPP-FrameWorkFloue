@@ -8,6 +8,8 @@
 #ifndef FUZZY_SUGENOCONCLUSION_H_
 #define FUZZY_SUGENOCONCLUSION_H_
 #include "../Core/NaryExpression.h"
+#include <iostream>
+#include <vector>
 //Zi c'est lacombinaison lineaire des entrés
 //wi c'est l'evaluation de la partie antécédante:
 //->

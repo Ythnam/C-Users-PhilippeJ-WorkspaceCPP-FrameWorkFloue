@@ -36,7 +36,7 @@ public:
 	core::Expression<T>* newAgg(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newDefuzz(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newNot(core::Expression<T>*);
-	core::Expression<T>* NewIs(core::Expression<T>*, fuzzy::is<T>*);
+	core::Expression<T>* newIs(core::Expression<T>*, fuzzy::is<T>*);
 
 	void changeNot(fuzzy::Not<T>*);
 	void changeAnd(fuzzy::And<T>*);
@@ -117,7 +117,7 @@ core::Expression<T>* FuzzyFactory<T>::newNot(core::Expression<T>* o) {
 }
 
 template<class T>
-core::Expression<T>* FuzzyFactory<T>::NewIs(core::Expression<T>* o,
+core::Expression<T>* FuzzyFactory<T>::newIs(core::Expression<T>* o,
 		fuzzy::is<T>* is) {
 	return this->newUnary(is, o);
 }
