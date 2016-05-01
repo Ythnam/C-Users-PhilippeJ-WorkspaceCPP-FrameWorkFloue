@@ -21,6 +21,7 @@
 #include "Fuzzy/CogDefuzz.h"
 #include "Fuzzy/isTriangle.h"
 #include "Fuzzy/FuzzyFactory.h"
+#include "Fuzzy/SugenoConclusion.h"
 //#include "Fuzzy/SugenoThen.h"
 //#include "Fuzzy/SugenoConclusion.h"
 //#include "Fuzzy/SugenoDefuzz.h"
@@ -111,13 +112,37 @@ int main() {
 
 	 Expression<double>* system = f.newDefuzz(val_ptrt, r);
 	 //apply input
-	 float s;
+	/* float s;
 	 while (true) {
 	 cout << "service : ";
 	 cin >> s;
 	 val_ptrs->setValue(s);
 	 cout << "tips -> " << system->evaluate();
 	 };
+*/
+	 // Test sur SugenoConclusion
+	 std::vector<double> _coeff(3);
+	 _coeff[0] = 1;
+	 _coeff[1] = 2;
+	 _coeff[2] = 3;
+	 for(int i=0; i<3; i++){
+		 std::cout << _coeff[i] <<std::endl;
+	 }
+
+	 core::ValueModel<double> test1(1);
+	 core::ValueModel<double> test2(2);
+	 core::ValueModel<double> test3(5);
+	 fuzzy::SugenoConclusion<double> sugConc(&_coeff);
+	 std::vector<core::Expression<double>* > tabExp;
+	 tabExp.push_back(&test1);
+	 tabExp.push_back(&test2);
+	 tabExp.push_back(&test3);
+	 for(int i=0; i<3; i++){
+		 std::cout << tabExp.at(i) <<std::endl;
+	 }
+
+	 sugConc.evaluate(&tabExp);
+	 std::cout << "Sugeno Conclusion" << sugConc.evaluate(&tabExp) << std::endl;
 
 	return 0;
 }

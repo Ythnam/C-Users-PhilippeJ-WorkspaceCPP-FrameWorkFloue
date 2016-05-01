@@ -25,7 +25,7 @@ public :
 	void setCoeff(std::vector<T>*);
 	T evaluate(std::vector<core::Expression<T>*>*) const;
 
-private : std::vector<T> coeff;
+private : std::vector<T>* coeff;
 
 };
 
@@ -51,19 +51,21 @@ void fuzzy::SugenoConclusion<T>::setCoeff(std::vector<T>* _coeff){
 
 template<class T>
 T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*>* tabExp) const {
-	if(this->coeff.size() == tabExp->size()){
-		int i = 0;
+	if(this->coeff->size() == tabExp->size()){
+		//int i = 0;
 		std::vector<T> save; // on sauvegarde les wi*zi dedans
 
-		for(core::Expression<T>* exp : tabExp){
+		//for(core::Expression<T>* exp : tabExp){
+		for(unsigned int j =0; j < tabExp->size(); j++){
 			//T sauveEvaluate = exp.core::evaluate();
-			save.add(this->coeff.get[i]*(exp)->evaluate()); //
-			i++; // permet d'itérer sur les coeffs
+			save.push_back( (this->coeff->at(j)) * ((tabExp->at(j))->evaluate())); //
+			//i++; // permet d'itérer sur les coeffs
 		}
 
 		T cumulExp = 0;
-		for(T expSave : save){
-			cumulExp = cumulExp + expSave;
+		//for(T expSave : save){
+		for(unsigned int k = 0; k < tabExp->size(); k++){
+			cumulExp = cumulExp + save.at(k);
 		}
 
 		return cumulExp;
