@@ -36,7 +36,7 @@ public:
 	core::Expression<T>* newAgg(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newDefuzz(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newNot(core::Expression<T>*);
-	core::Expression<T>* NewIs(core::Expression<T>* o, fuzzy::is<T>* is);
+	core::Expression<T>* NewIs(core::Expression<T>*, fuzzy::is<T>*);
 
 	void changeNot(fuzzy::Not<T>*);
 	void changeAnd(fuzzy::And<T>*);

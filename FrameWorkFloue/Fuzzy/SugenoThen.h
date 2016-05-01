@@ -8,7 +8,7 @@
 #define FUZZY_SUGENOTHEN_H_
 
 #include "Then.h"
-#include "NaryExpression.h"
+#include "../Core/NaryExpression.h"
 
 namespace fuzzy{
 template <class T>

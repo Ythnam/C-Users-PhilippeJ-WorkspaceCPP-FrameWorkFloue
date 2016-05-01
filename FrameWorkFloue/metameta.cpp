@@ -10,6 +10,9 @@
 #include "Core/UnaryExpressionModel.h"
 #include "Core/UnaryShadowExpression.h"
 #include "Core/BinaryExpressionModel.h"
+#include "Core/BinaryShadowExpression.h"
+#include "Core/NaryExpressionModel.h"
+#include "Core/NaryShadowExpression.h"
 #include "Fuzzy/AndMin.h"
 #include "Fuzzy/NotMinus1.h"
 #include "Fuzzy/OrMax.h"
@@ -18,6 +21,9 @@
 #include "Fuzzy/CogDefuzz.h"
 #include "Fuzzy/isTriangle.h"
 #include "Fuzzy/FuzzyFactory.h"
+#include "Fuzzy/SugenoThen.h"
+#include "Fuzzy/SugenoConclusion.h"
+#include "Fuzzy/SugenoDefuzz.h"
 
 // Extension logique numerique
 //
@@ -90,8 +96,12 @@ int main() {
 	ValueModel<double> service(0);
 	ValueModel<double> food(0);
 	ValueModel<double> tips(0);
+	fuzzy::SugenoThen<double> sugeno;
+	fuzzy::SugenoConclusion<double> sugenoC;
+	fuzzy::SugenoDefuzz<double> sugenoD;
+NaryExpressionModel<double>();
 	//f.NewIs(&tips, &cheap);
-	Expression<double> *r = f.NewAgg(f.NewAgg(f.NewThen(f.NewIs(&service, &poor), f.NewIs(&tips, &cheap)),f.NewThen(f.NewIs(&service, &good),f.NewIs(&tips, &average))),f.NewThen(f.NewIs(&service, &excellent),f.NewIs(&tips, &generous)));
+	//Expression<double> *r = f.NewAgg(f.NewAgg(f.NewThen(f.NewIs(&service, &poor), f.NewIs(&tips, &cheap)),f.NewThen(f.NewIs(&service, &good),f.NewIs(&tips, &average))),f.NewThen(f.NewIs(&service, &excellent),f.NewIs(&tips, &generous)));
 	//defuzzification
 
 	// Expression *system = f.NewDefuzz(&tips, r, 0, 25, 1);

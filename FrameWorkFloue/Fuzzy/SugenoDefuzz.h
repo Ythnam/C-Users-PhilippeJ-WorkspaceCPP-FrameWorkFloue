@@ -7,7 +7,7 @@
 
 #ifndef FUZZY_SUGENODEFUZZ_H_
 #define FUZZY_SUGENODEFUZZ_H_
-#include "NaryExpression.h"
+#include "../Core/NaryExpression.h"
 
 namespace fuzzy{
 template <class T>
