@@ -23,7 +23,7 @@ class SugenoThen : public fuzzy::Then<T>{
 	void setPremiseValue(T);
 
 	private :
-	T premiseValue;
+	mutable T premiseValue;
 };
 
 template<class T>
@@ -41,7 +41,8 @@ T fuzzy::SugenoThen<T>::evaluate(core::Expression<T>* coeff, core::Expression<T>
 
 	this->premiseValue = coeff->evaluate();
 	T res =this->premiseValue*exp->evaluate();
-			return res;
+
+	return res;
 }
 
 template <class T>

@@ -22,6 +22,7 @@
 #include "Fuzzy/isTriangle.h"
 #include "Fuzzy/FuzzyFactory.h"
 #include "Fuzzy/SugenoConclusion.h"
+#include "Fuzzy/SugenoDefuzz.h"
 //#include "Fuzzy/SugenoThen.h"
 //#include "Fuzzy/SugenoConclusion.h"
 //#include "Fuzzy/SugenoDefuzz.h"
@@ -120,6 +121,8 @@ int main() {
 	 cout << "tips -> " << system->evaluate();
 	 };
 */
+
+
 	 // Test sur SugenoConclusion
 	 std::vector<double> _coeff(3);
 	 _coeff[0] = 1;
@@ -141,8 +144,20 @@ int main() {
 		 std::cout << tabExp.at(i) <<std::endl;
 	 }
 
-	 sugConc.evaluate(&tabExp);
-	 std::cout << "Sugeno Conclusion" << sugConc.evaluate(&tabExp) << std::endl;
+	 //sugConc.evaluate(&tabExp);
+	 std::cout << "Sugeno Conclusion : " << sugConc.evaluate(&tabExp) << std::endl;
+
+
+	 //SugenoDefuzz et donc sur SugenoThen
+
+	 fuzzy::SugenoThen<double> sugThen;
+	 std::cout << "Sugeno Then : " << sugThen.evaluate(&test3, &test2) << std::endl;
+	 std::cout << "Premise Value " << sugThen.getPremiseValue() << std::endl;
+
+
+
+	 fuzzy::SugenoDefuzz<double> sugDef;
+	 std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
 
 	return 0;
 }
