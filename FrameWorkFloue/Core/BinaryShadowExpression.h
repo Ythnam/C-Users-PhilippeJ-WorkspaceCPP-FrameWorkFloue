@@ -45,9 +45,12 @@ BinaryExpression<T>* BinaryShadowExpression<T>::getTarget() const {
 	return target;
 }
 template<class T>
-T BinaryShadowExpression<T>::evaluate(core::Expression<T>* left,
-		core::Expression<T>* right) const {
+T BinaryShadowExpression<T>::evaluate(core::Expression<T>* left,core::Expression<T>* right) const {
+	if(this->target != NULL){
 		return target->evaluate(left, right);
+	} else{
+		return NULL;
+	}
 }
 }
 #endif /* CORE_BINARYSHADOWEXPRESSION_H_ */
