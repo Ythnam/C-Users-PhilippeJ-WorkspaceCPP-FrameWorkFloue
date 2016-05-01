@@ -21,9 +21,9 @@
 #include "Fuzzy/CogDefuzz.h"
 #include "Fuzzy/isTriangle.h"
 #include "Fuzzy/FuzzyFactory.h"
-//#include "Fuzzy/SugenoThen.h"
-//#include "Fuzzy/SugenoConclusion.h"
-//#include "Fuzzy/SugenoDefuzz.h"
+#include "Fuzzy/SugenoThen.h"
+#include "Fuzzy/SugenoConclusion.h"
+#include "Fuzzy/SugenoDefuzz.h"
 
 // Extension logique numerique
 //
@@ -101,9 +101,9 @@ int main() {
 	 val_ptrs = &service;
 	 val_ptrf = &food;
 	 val_ptrt = &tips;
-//	fuzzy::SugenoThen<double> sugeno;
-	//fuzzy::SugenoConclusion<double> sugenoC;
-	//fuzzy::SugenoDefuzz<double> sugenoD;
+	fuzzy::SugenoThen<double> sugeno;
+	fuzzy::SugenoConclusion<double> sugenoC;
+	fuzzy::SugenoDefuzz<double> sugenoD;
 	//NaryExpressionModel<double>();
 	//f.NewIs(&tips, &cheap);
 	//Expression<double> *r = f.newAgg(f.newAgg(f.newThen(f.newIs(val_ptrs, &poor), f.newIs(val_ptrt, &cheap)),f.newThen(f.newIs(val_ptrs, &good),f.newIs(val_ptrt, &average))),f.newThen(f.newIs(val_ptrs, &excellent),f.newIs(val_ptrt, &generous)));

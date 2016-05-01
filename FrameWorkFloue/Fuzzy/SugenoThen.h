@@ -40,8 +40,8 @@ template<class T>
 T fuzzy::SugenoThen<T>::evaluate(core::Expression<T>* coeff, core::Expression<T>* exp) const{
 
 	this->premiseValue = coeff->evaluate();
-
-	return (this->premiseValue*exp->evaluate());
+	T res =this->premiseValue*exp->evaluate();
+			return res;
 }
 
 template <class T>

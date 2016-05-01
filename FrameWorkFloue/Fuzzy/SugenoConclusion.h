@@ -70,7 +70,6 @@ T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*>* tabExp
 
 	} else{
 		std::cout << "error : coeff's size vector is different of expression's size vector " << endl;
-		return null;
 	}
 
 }
