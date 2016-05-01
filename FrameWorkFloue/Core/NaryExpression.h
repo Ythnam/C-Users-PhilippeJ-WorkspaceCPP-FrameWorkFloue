@@ -17,7 +17,7 @@ class NaryExpression{
 
 public :
 	virtual ~NaryExpression(){};
-	virtual T evaluate(std::vector<core::Expression<T>*>) const = 0;
+	virtual T evaluate(std::vector<core::Expression<T>*> *) const = 0;
 
 };
 }

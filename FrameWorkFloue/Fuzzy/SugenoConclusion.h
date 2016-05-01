@@ -17,18 +17,23 @@ class SugenoConclusion : public core::NaryExpression<T>{
 
 public :
 	virtual ~SugenoConclusion(){};
-	SugenoConclusion(std::vector<T*>);
+	SugenoConclusion(std::vector<T>*);
+	SugenoConclusion();
 	std::vector<T*> getCoeff();
-	void setCoeff(std::vector<T*>);
-	T evaluate(std::vector<core::Expression<T>*>) const;
+	void setCoeff(std::vector<T>*);
+	T evaluate(std::vector<core::Expression<T>*>*) const;
 
 private : std::vector<T> coeff;
 
 };
 
+template< class T>
+fuzzy::SugenoConclusion<T>::SugenoConclusion():coeff(){
+
+}
 
 template<class T>
-fuzzy::SugenoConclusion<T>::SugenoConclusion(std::vector<T*> _coeff):coeff(_coeff){
+fuzzy::SugenoConclusion<T>::SugenoConclusion(std::vector<T>* _coeff):coeff(_coeff){
 
 }
 
@@ -38,19 +43,19 @@ std::vector<T*> fuzzy::SugenoConclusion<T>::getCoeff(){
 }
 
 template<class T>
-void fuzzy::SugenoConclusion<T>::setCoeff(std::vector<T*> _coeff){
+void fuzzy::SugenoConclusion<T>::setCoeff(std::vector<T>* _coeff){
 	this->coeff = _coeff;
 }
 
 template<class T>
-T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*> tabExp) const {
-	if(this->coeff.size() == tabExp.size()){
+T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*>* tabExp) const {
+	if(this->coeff.size() == tabExp->size()){
 		int i = 0;
 		std::vector<T> save; // on sauvegarde les wi*zi dedans
 
 		for(core::Expression<T>* exp : tabExp){
 			//T sauveEvaluate = exp.core::evaluate();
-			save.add(this->coeff.get[i]*exp->evaluate()); //
+			save.add(this->coeff.get[i]*(exp)->evaluate()); //
 			i++; // permet d'itérer sur les coeffs
 		}
 
@@ -62,7 +67,7 @@ T fuzzy::SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*> tabExp)
 		return cumulExp;
 
 	} else{
-		std::cout << "error : size " << endl;
+		std::cout << "error : coeff's size vector is different of expression's size vector " << endl;
 		return null;
 	}
 
