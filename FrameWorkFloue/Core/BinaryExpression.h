@@ -9,6 +9,7 @@
 #define BINARYEXPRESSION_H_
 #include "Expression.h"
 
+
 namespace core{
 template <class T>
 class BinaryExpression{

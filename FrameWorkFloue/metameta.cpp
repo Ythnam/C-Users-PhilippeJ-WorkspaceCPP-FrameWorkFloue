@@ -72,7 +72,7 @@ int main() {
 	BinaryExpressionModel<double> bem(&opAnd, val_ptr, val_ptr2);
 	binary_ptr = &bem;
 	BinaryShadowExpression<double> bsem(binary_ptr);
-	cout << "Démonstration de la BinaryShadowExpression avec l'opérateur And : "
+	cout << "Démonstration de la BinaryShadowExpression avec l'opérateur AndMin : "
 			<< binary_ptr->GetLeft()->evaluate() << "     "
 			<< binary_ptr->GetRight()->evaluate() << endl;
 	cout << bsem.getTarget()->evaluate(val_ptr, val_ptr2) << endl;
@@ -131,6 +131,8 @@ int main() {
 	//defuzzification
 
 	Expression<double>* system = f.newDefuzz(val_ptrt, r, 0, 25, 1);
+
+
 	//apply input
 	float s;
 	std::cout<< endl<<endl<<"Démonstration de l'application ( calcul de pourboire) de l'exemple du cours" << std::endl;
@@ -141,13 +143,16 @@ int main() {
 		cout << "tips -> " << system->evaluate() << endl;
 	};
 
-	/*
+
 
 	 // Test sur SugenoConclusion
 	 std::vector<double> _coeff(3);
-	 _coeff[0] = 1;
-	 _coeff[1] = 2;
-	 _coeff[2] = 3;
+	 cout << "Coeff 1 :";
+	 cin >> _coeff[0];
+	 cout << "Coeff 2 :";
+	 cin >> _coeff[1];
+	 cout << "Coeff 3 :";
+	 cin >> _coeff[2];
 	 for(int i=0; i<3; i++){
 	 std::cout << _coeff[i] <<std::endl;
 	 }
@@ -176,8 +181,8 @@ int main() {
 
 
 
-	 // fuzzy::SugenoDefuzz<double> sugDef;
-	 // std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
-	 */
+	  fuzzy::SugenoDefuzz<double> sugDef;
+	  std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
+
 	return 0;
 }
