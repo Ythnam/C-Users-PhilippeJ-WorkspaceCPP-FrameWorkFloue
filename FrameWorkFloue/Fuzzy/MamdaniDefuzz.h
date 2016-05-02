@@ -24,6 +24,7 @@ public:
 	virtual T evaluate(core::Expression<T>* left,
 			core::Expression<T>* right) const;
 	virtual T defuzz(const typename Evaluator<T>::Shape& shape) const = 0;
+	void setValues(const T&, const T&, const T&);
 private:
 	T min, max, step;
 
@@ -42,5 +43,12 @@ T MamdaniDefuzz<T>::evaluate(core::Expression<T>* left,core::Expression<T>* righ
 
 	return defuzz(Evaluator<T>::buildShape(min, max, step, left, right));
 }
+template<class T>
+	void MamdaniDefuzz<T>::setValues(const T& _min, const T& _max, const T& _step)
+	{
+		min = _min;
+		max = _max;
+		step = _step;
+	}
 }
 #endif /* MAMDANIDEFUZZ_H_ */

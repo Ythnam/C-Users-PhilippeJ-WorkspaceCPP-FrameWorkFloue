@@ -70,7 +70,7 @@ int main() {
 
 	 binary_ptr->SetOperator(&opDefuzz);
 	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
-	 */
+*/
 
 	//final test
 	//operators
@@ -111,17 +111,17 @@ int main() {
 	Expression<double> *r = f.newAgg(f.newAgg(f.newThen(f.newIs(val_ptrs, &poor), f.newIs(val_ptrt, &cheap)),f.newThen(f.newIs(val_ptrs, &good),f.newIs(val_ptrt, &average))),f.newThen(f.newIs(val_ptrs, &excellent),f.newIs(val_ptrt, &generous)));
 	//defuzzification
 
-	 Expression<double>* system = f.newDefuzz(val_ptrt, r);
+	 Expression<double>* system = f.newDefuzz(val_ptrt, r,0, 25, 1);
 	 //apply input
-	/* float s;
+	 float s;
 	 while (true) {
 	 cout << "service : ";
 	 cin >> s;
 	 val_ptrs->setValue(s);
 	 cout << "tips -> " << system->evaluate();
 	 };
-*/
 
+/*
 
 	 // Test sur SugenoConclusion
 	 std::vector<double> _coeff(3);
@@ -156,8 +156,8 @@ int main() {
 
 
 
-	 fuzzy::SugenoDefuzz<double> sugDef;
-	 std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
-
+	// fuzzy::SugenoDefuzz<double> sugDef;
+	// std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
+*/
 	return 0;
 }

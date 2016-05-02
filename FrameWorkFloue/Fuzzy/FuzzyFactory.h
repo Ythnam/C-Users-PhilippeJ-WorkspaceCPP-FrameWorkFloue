@@ -34,7 +34,8 @@ public:
 	core::Expression<T>* newOr(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newThen(core::Expression<T>*, core::Expression<T>*);
 	core::Expression<T>* newAgg(core::Expression<T>*, core::Expression<T>*);
-	core::Expression<T>* newDefuzz(core::Expression<T>*, core::Expression<T>*);
+	core::Expression<T>* newDefuzz(core::Expression<T>*, core::Expression<T>*,
+			const T&, const T&, const T&);
 	core::Expression<T>* newNot(core::Expression<T>*);
 	core::Expression<T>* newIs(core::Expression<T>*, fuzzy::is<T>*);
 
@@ -101,8 +102,8 @@ core::Expression<T>* FuzzyFactory<T>::newAgg(core::Expression<T>* left,
 
 template<class T>
 core::Expression<T>* FuzzyFactory<T>::newDefuzz(core::Expression<T>* left,
-		core::Expression<T>* right) {
-
+		core::Expression<T>* right, const T& min, const T& max, const T& step){
+	((fuzzy::MamdaniDefuzz<T>*)defuzzBE.getTarget())->setValues(min,max,step);
 	return this->newBinary(&defuzzBE, left, right);
 
 }
