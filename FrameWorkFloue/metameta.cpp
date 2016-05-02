@@ -36,11 +36,16 @@ using namespace core;
 
 int main() {
 
+	std::cout
+			<< "Démonstration de ValueModel et des opérateurs Unaires / Binaires"
+			<< std::endl;
+
 	ValueModel<double> val(0.8);
 	ValueModel<double>* val_ptr;
+	cout << val.evaluate() << " et après modification : ";
 	val_ptr = &val;
 	val_ptr->setValue(0.7);
-	cout << val_ptr->evaluate() << " step 1" << endl;
+	cout << val_ptr->evaluate() << endl;
 
 	ValueModel<double> val2(0.9);
 	ValueModel<double>* val_ptr2 = 0;
@@ -59,19 +64,23 @@ int main() {
 
 	unary_ptr = &uem;
 	UnaryShadowExpression<double> usem(unary_ptr);
-	cout << usem.getTarget()->evaluate(unary_ptr) << endl;
+	cout << "Démonstration de l'UnaryShadowExpression avec l'opérateur Not : "
+			<< usem.getTarget()->evaluate(unary_ptr) << endl;
 	cout << unary_ptr->GetOperator()->evaluate(val_ptr) << endl;
 
 	BinaryExpressionModel<double>* binary_ptr;
 	BinaryExpressionModel<double> bem(&opAnd, val_ptr, val_ptr2);
 	binary_ptr = &bem;
 	BinaryShadowExpression<double> bsem(binary_ptr);
-	cout << binary_ptr->GetLeft()->evaluate() << " et "
+	cout << "Démonstration de la BinaryShadowExpression avec l'opérateur And : "
+			<< binary_ptr->GetLeft()->evaluate() << "     "
 			<< binary_ptr->GetRight()->evaluate() << endl;
 	cout << bsem.getTarget()->evaluate(val_ptr, val_ptr2) << endl;
 
 	binary_ptr->SetOperator(&opDefuzz);
-	cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
+	cout
+			<< "Démonstration de la BinaryShadowExpression avec l'opérateur Défuzz: "
+			<< binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
 
 	//final test
 	//operators
@@ -124,6 +133,7 @@ int main() {
 	Expression<double>* system = f.newDefuzz(val_ptrt, r, 0, 25, 1);
 	//apply input
 	float s;
+	std::cout<< endl<<endl<<"Démonstration de l'application ( calcul de pourboire) de l'exemple du cours" << std::endl;
 	while (true) {
 		cout << "service : ";
 		cin >> s;
