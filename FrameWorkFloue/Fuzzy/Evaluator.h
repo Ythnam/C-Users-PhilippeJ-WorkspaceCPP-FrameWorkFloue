@@ -19,7 +19,7 @@ class Evaluator {
 public:
 	typedef pair<vector<T>, vector<T> > Shape;
 	static Shape buildShape(const T& min, const T& max, const T& step,
-			core::Expression<T>* l, core::Expression<T>* r);
+			core::ValueModel<T>*v, core::Expression<T>* f);
 
 	template<class U>
 	class EvalFunc {
@@ -33,14 +33,15 @@ public:
 
 template<class T>
 typename Evaluator<T>::Shape Evaluator<T>::buildShape(const T& min,
-		const T& max, const T& step,core::Expression<T>* l, core::Expression<T>* r) {
-	vector<T> x, y;
-	for (T i = min; i <= max; i += step) {
-
+		const T& max, const T& step,core::ValueModel<T>* v, core::Expression<T>* f) {
+	std::vector<T> x,y;
+	for(T i=min;i<=max;i+=step)
+	{
+		v->setValue(i);
+		y.push_back(f->evaluate());
 		x.push_back(i);
-		y.push_back(r->evaluate());
 	}
-	return Shape(x, y);
+	return Shape(x,y);
 }
 }
 

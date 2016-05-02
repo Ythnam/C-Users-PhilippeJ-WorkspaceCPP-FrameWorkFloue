@@ -79,7 +79,7 @@ int main() {
 	fuzzy::OrMax<double> opOr;
 	fuzzy::ThenMin<double> opThen;
 	fuzzy::AggMax<double> opAgg;
-	fuzzy::CogDefuzz<double> opDefuzz;
+	fuzzy::CogDefuzz<double> opDefuzz(0, 25, 1);
 
 	//fuzzy expression factory
 	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opAgg,&opDefuzz);
@@ -118,7 +118,7 @@ int main() {
 	 cout << "service : ";
 	 cin >> s;
 	 val_ptrs->setValue(s);
-	 cout << "tips -> " << system->evaluate();
+	 cout << "tips -> " << system->evaluate()<<endl;
 	 };
 
 /*

@@ -45,6 +45,8 @@ T CogDefuzz<T>::defuzz(const typename Evaluator<T>::Shape& shape) const {
 	// calcul du barycentre
 	for (T i = min; i < max; i += step) {
 		firstSum += shape.second.at(i) * shape.first.at(i);
+
+
 		secondSum += shape.second.at(i);
 	}
 
