@@ -136,12 +136,12 @@ int main() {
 	//apply input
 	float s;
 	std::cout<< endl<<endl<<"Démonstration de l'application ( calcul de pourboire) de l'exemple du cours" << std::endl;
-	while (true) {
+	/*while (true) {
 		cout << "service : ";
 		cin >> s;
 		val_ptrs->setValue(s);
 		cout << "tips -> " << system->evaluate() << endl;
-	};
+	};*/
 
 
 
@@ -181,8 +181,86 @@ int main() {
 
 
 
-	  fuzzy::SugenoDefuzz<double> sugDef;
-	  std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
+	 // fuzzy::SugenoDefuzz<double> sugDef;
+	 // std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
+
+
+	  //Test
+
+	  fuzzy::isTriangle<double> badQuality(-5, 0, 5);
+	  fuzzy::isTriangle<double> averageQuality(5, 10, 15);
+	  fuzzy::isTriangle<double> excellentQuality(15, 20, 25);
+
+	  Expression<double> *r1 =
+	  			  f.newAgg(
+	  			  			f.newAgg(
+	  			  					f.newThen(f.newIs(val_ptrs, &poor),
+	  			  							f.newIs(val_ptrf, &badQuality)),
+	  			  					f.newThen(f.newIs(val_ptrs, &good),
+	  			  							f.newIs(val_ptrf, &averageQuality))),
+	  			  			f.newThen(f.newIs(val_ptrs, &excellent),
+	  			  					f.newIs(val_ptrf, &excellentQuality)));
+	  	  Expression<double>* system1 = f.newDefuzz(val_ptrf, r1, 0, 25, 1);
+	  	  float fo;
+	  	  float result, result2;
+	  	  float savFood, savServ;
+	  	while (true) {
+	  			cout << "food : ";
+	  			cin >> fo;
+	  			if(fo==5){
+	  				fo=4.999;
+	  			}
+	  			if(fo==0){
+	  				fo=0.00001;
+	  			}
+	  			val_ptrs->setValue(fo);
+	  			savFood = system1->evaluate();
+	  			cout << "tips -> " << system1->evaluate() << endl;
+	  			cout << "service : ";
+	  			cin >> s;
+	  			if(s==5){
+	  				s=4.999;
+	  			}
+	  			if(s==0){
+	  				s=0.00001;
+	  			}
+	  			val_ptrs->setValue(s);
+	  			savServ = system->evaluate();
+	  			cout << "tips -> " << system->evaluate() << endl;
+
+	  			result = savServ +savFood;
+	  			result2 = savServ/2+savFood;
+
+	  			if(fo >= s){
+	  				if(result>=23){
+	  					std::cout << "C'est un très bon restaurant" << std::endl;
+	  				}
+	  				else{ if(result>=20){
+	  						std::cout << "C'est un bon restaurant" << std::endl;
+	  						} else{ if(result>=16){
+	  							std::cout << "C'est un restaurant convenable" << std::endl;
+	  						} else{
+	  							std::cout << "C'est un mauvais restaurant" << std::endl;
+	  						}
+	  					}
+	  				}
+	  			}
+	  			else{
+	  				if(result2>=16.5){
+	  					std::cout << "C'est un très bon restaurant" << std::endl;
+	  				}
+	  				else{
+	  					if(result2>=14){
+	  						std::cout << "C'est un bon restaurant" << std::endl;
+	  					} else{
+	  						std::cout << "C'est un mauvais restaurant" << std::endl;
+	  					}
+	  				}
+
+	  			}
+
+	  	}
+
 
 	return 0;
 }
