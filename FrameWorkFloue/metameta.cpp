@@ -34,55 +34,57 @@ using namespace std;
 using namespace core;
 
 int main() {
-	/*
-	 ValueModel<double> val(0.8);
-	 ValueModel<double>* val_ptr;
-	 val_ptr = &val;
-	 val_ptr->setValue(0.7);
-	 cout << val_ptr->evaluate() << " step 1" << endl;
 
-	 ValueModel<double> val2(0.9);
-	 ValueModel<double>* val_ptr2 = 0;
-	 val_ptr2 = &val2;
-	 val_ptr2->setValue(0.5);
-	 //cout<<val_ptr2->evaluate()<< endl;
+	ValueModel<double> val(0.8);
+	ValueModel<double>* val_ptr;
+	val_ptr = &val;
+	val_ptr->setValue(0.7);
+	cout << val_ptr->evaluate() << " step 1" << endl;
 
-	 fuzzy::OrMax<double> opOr;
-	 fuzzy::ThenMin<double> opThen;
-	 fuzzy::NotMinus1<double> opNot;
-	 fuzzy::AndMin<double> opAnd;
-	 fuzzy::CogDefuzz<double> opDefuzz(0.0,10.0,1.0);
-	 UnaryExpressionModel<double>* unary_ptr = 0;
-	 UnaryExpressionModel<double> uem(&opNot, val_ptr);
+	ValueModel<double> val2(0.9);
+	ValueModel<double>* val_ptr2 = 0;
+	val_ptr2 = &val2;
+	val_ptr2->setValue(0.5);
+	//cout<<val_ptr2->evaluate()<< endl;
 
-	 unary_ptr = &uem;
-	 UnaryShadowExpression<double> usem(unary_ptr);
-	 cout << usem.getTarget()->evaluate(unary_ptr)<<endl;
-	 cout << unary_ptr->GetOperator()->evaluate(val_ptr) << endl;
-
-	 BinaryExpressionModel<double>* binary_ptr;
-	 BinaryExpressionModel<double> bem(&opAnd, val_ptr, val_ptr2);
-	 binary_ptr = &bem;
-	 BinaryShadowExpression<double> bsem(binary_ptr);
-	 cout << binary_ptr->GetLeft()->evaluate() << " et "
-	 << binary_ptr->GetRight()->evaluate() << endl;
-	 cout << bsem.getTarget()->evaluate(val_ptr, val_ptr2) << endl;
-
-	 binary_ptr->SetOperator(&opDefuzz);
-	 cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
-*/
-
-	//final test
-	//operators
 	fuzzy::NotMinus1<double> opNot;
 	fuzzy::AndMin<double> opAnd;
 	fuzzy::OrMax<double> opOr;
 	fuzzy::ThenMin<double> opThen;
 	fuzzy::AggMax<double> opAgg;
 	fuzzy::CogDefuzz<double> opDefuzz(0, 25, 1);
+	UnaryExpressionModel<double>* unary_ptr = 0;
+	UnaryExpressionModel<double> uem(&opNot, val_ptr);
 
+	unary_ptr = &uem;
+	UnaryShadowExpression<double> usem(unary_ptr);
+	cout << usem.getTarget()->evaluate(unary_ptr) << endl;
+	cout << unary_ptr->GetOperator()->evaluate(val_ptr) << endl;
+
+	BinaryExpressionModel<double>* binary_ptr;
+	BinaryExpressionModel<double> bem(&opAnd, val_ptr, val_ptr2);
+	binary_ptr = &bem;
+	BinaryShadowExpression<double> bsem(binary_ptr);
+	cout << binary_ptr->GetLeft()->evaluate() << " et "
+			<< binary_ptr->GetRight()->evaluate() << endl;
+	cout << bsem.getTarget()->evaluate(val_ptr, val_ptr2) << endl;
+
+	binary_ptr->SetOperator(&opDefuzz);
+	cout << binary_ptr->GetOperator()->evaluate(val_ptr, val_ptr2) << endl;
+
+	//final test
+	//operators
+	/*
+	 fuzzy::NotMinus1<double> opNot;
+	 fuzzy::AndMin<double> opAnd;
+	 fuzzy::OrMax<double> opOr;
+	 fuzzy::ThenMin<double> opThen;
+	 fuzzy::AggMax<double> opAgg;
+	 fuzzy::CogDefuzz<double> opDefuzz(0, 25, 1);
+	 */
 	//fuzzy expression factory
-	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opAgg,&opDefuzz);
+	fuzzy::FuzzyFactory<double> f(&opNot, &opAnd, &opOr, &opThen, &opAgg,
+			&opDefuzz);
 	//membership function
 	fuzzy::isTriangle<double> poor(-5, 0, 5);
 	fuzzy::isTriangle<double> good(0, 5, 10);
@@ -100,28 +102,35 @@ int main() {
 	ValueModel<double>* val_ptrs;
 	ValueModel<double>* val_ptrf;
 	ValueModel<double>* val_ptrt;
-	 val_ptrs = &service;
-	 val_ptrf = &food;
-	 val_ptrt = &tips;
+	val_ptrs = &service;
+	val_ptrf = &food;
+	val_ptrt = &tips;
 	//fuzzy::SugenoThen<double> sugeno;
 	//fuzzy::SugenoConclusion<double> sugenoC;
 //	fuzzy::SugenoDefuzz<double> sugenoD;
 	//NaryExpressionModel<double>();
 	//f.NewIs(&tips, &cheap);
-	Expression<double> *r = f.newAgg(f.newAgg(f.newThen(f.newIs(val_ptrs, &poor), f.newIs(val_ptrt, &cheap)),f.newThen(f.newIs(val_ptrs, &good),f.newIs(val_ptrt, &average))),f.newThen(f.newIs(val_ptrs, &excellent),f.newIs(val_ptrt, &generous)));
+	Expression<double> *r = f.newAgg(
+			f.newAgg(
+					f.newThen(f.newIs(val_ptrs, &poor),
+							f.newIs(val_ptrt, &cheap)),
+					f.newThen(f.newIs(val_ptrs, &good),
+							f.newIs(val_ptrt, &average))),
+			f.newThen(f.newIs(val_ptrs, &excellent),
+					f.newIs(val_ptrt, &generous)));
 	//defuzzification
 
-	 Expression<double>* system = f.newDefuzz(val_ptrt, r,0, 25, 1);
-	 //apply input
-	 float s;
-	 while (true) {
-	 cout << "service : ";
-	 cin >> s;
-	 val_ptrs->setValue(s);
-	 cout << "tips -> " << system->evaluate()<<endl;
-	 };
+	Expression<double>* system = f.newDefuzz(val_ptrt, r, 0, 25, 1);
+	//apply input
+	float s;
+	while (true) {
+		cout << "service : ";
+		cin >> s;
+		val_ptrs->setValue(s);
+		cout << "tips -> " << system->evaluate() << endl;
+	};
 
-/*
+	/*
 
 	 // Test sur SugenoConclusion
 	 std::vector<double> _coeff(3);
@@ -129,7 +138,7 @@ int main() {
 	 _coeff[1] = 2;
 	 _coeff[2] = 3;
 	 for(int i=0; i<3; i++){
-		 std::cout << _coeff[i] <<std::endl;
+	 std::cout << _coeff[i] <<std::endl;
 	 }
 
 	 core::ValueModel<double> test1(1);
@@ -141,7 +150,7 @@ int main() {
 	 tabExp.push_back(&test2);
 	 tabExp.push_back(&test3);
 	 for(int i=0; i<3; i++){
-		 std::cout << tabExp.at(i) <<std::endl;
+	 std::cout << tabExp.at(i) <<std::endl;
 	 }
 
 	 //sugConc.evaluate(&tabExp);
@@ -156,8 +165,8 @@ int main() {
 
 
 
-	// fuzzy::SugenoDefuzz<double> sugDef;
-	// std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
-*/
+	 // fuzzy::SugenoDefuzz<double> sugDef;
+	 // std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
+	 */
 	return 0;
 }
