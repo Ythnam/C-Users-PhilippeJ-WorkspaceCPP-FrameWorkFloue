@@ -203,8 +203,9 @@ int main() {
 	float fo;
 	float result, result2;
 	float savFood, savServ;
+	std::cout<<"L'univers de définition est de -4.99 à 5 pour les valeurs à saisir " << std::endl;
 	while (true) {
-		std::cout<<"L'univers de définition est de -4.99 à 5 pour les valeurs à saisir " << std::endl;
+
 		cout << "qualité du repas : ";
 		cin >> fo;
 		if (fo == 5) {
