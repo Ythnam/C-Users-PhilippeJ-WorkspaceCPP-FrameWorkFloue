@@ -135,13 +135,13 @@ int main() {
 
 	//apply input
 	float s;
-	//std::cout<< endl<<endl<<"Démonstration de l'application ( calcul de pourboire) de l'exemple du cours" << std::endl;
-	/*while (true) {
+	std::cout<< endl<<endl<<"Démonstration de l'application ( calcul de pourboire) de l'exemple du cours" << std::endl;
+	//while (true) {
 	 cout << "service : ";
 	 cin >> s;
 	 val_ptrs->setValue(s);
 	 cout << "tips -> " << system->evaluate() << endl;
-	 };*/
+	 //};
 
 	std::cout << endl << endl << "Démonstration de Sugeno conclusion : "
 			<< std::endl;
