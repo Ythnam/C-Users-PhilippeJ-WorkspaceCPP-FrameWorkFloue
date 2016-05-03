@@ -28,8 +28,7 @@
 //#include "Fuzzy/SugenoDefuzz.h"
 
 // Projet Réalisé par Mathieu Galliere et Philippe Jacob.
-// Certaines lignes de codes sont sembables au projet de Dimitri Reynie et Cedric Szymanski
-// Cela est dû au fait qu'ils nous ont aidés à réalisé certaines parties. Ils nous ont expliqué et nous ont aiguillé.
+// Merci à Cédric Szymanski et Dimitri Reynié pour leur aide sur les classes ExpressionFactory et SugenoDefuzz
 
 using namespace std;
 using namespace core;
