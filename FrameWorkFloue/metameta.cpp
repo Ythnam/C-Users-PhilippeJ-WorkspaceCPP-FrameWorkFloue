@@ -72,7 +72,8 @@ int main() {
 	BinaryExpressionModel<double> bem(&opAnd, val_ptr, val_ptr2);
 	binary_ptr = &bem;
 	BinaryShadowExpression<double> bsem(binary_ptr);
-	cout << "Démonstration de la BinaryShadowExpression avec l'opérateur AndMin : "
+	cout
+			<< "Démonstration de la BinaryShadowExpression avec l'opérateur AndMin : "
 			<< binary_ptr->GetLeft()->evaluate() << "     "
 			<< binary_ptr->GetRight()->evaluate() << endl;
 	cout << bsem.getTarget()->evaluate(val_ptr, val_ptr2) << endl;
@@ -132,135 +133,133 @@ int main() {
 
 	Expression<double>* system = f.newDefuzz(val_ptrt, r, 0, 25, 1);
 
-
 	//apply input
 	float s;
-	std::cout<< endl<<endl<<"Démonstration de l'application ( calcul de pourboire) de l'exemple du cours" << std::endl;
+	//std::cout<< endl<<endl<<"Démonstration de l'application ( calcul de pourboire) de l'exemple du cours" << std::endl;
 	/*while (true) {
+	 cout << "service : ";
+	 cin >> s;
+	 val_ptrs->setValue(s);
+	 cout << "tips -> " << system->evaluate() << endl;
+	 };*/
+
+	std::cout << endl << endl << "Démonstration de Sugeno conclusion : "
+			<< std::endl;
+	// Test sur SugenoConclusion
+	std::vector<double> _coeff(3);
+	cout << "Coeff 1 :";
+	cin >> _coeff[0];
+	cout << "Coeff 2 :";
+	cin >> _coeff[1];
+	cout << "Coeff 3 :";
+	cin >> _coeff[2];
+	for (int i = 0; i < 3; i++) {
+		std::cout << _coeff[i] << std::endl;
+	}
+
+	core::ValueModel<double> test1(1);
+	core::ValueModel<double> test2(2);
+	core::ValueModel<double> test3(5);
+	fuzzy::SugenoConclusion<double> sugConc(&_coeff);
+	std::vector<core::Expression<double>*> tabExp;
+	tabExp.push_back(&test1);
+	tabExp.push_back(&test2);
+	tabExp.push_back(&test3);
+	for (int i = 0; i < 3; i++) {
+		std::cout << tabExp.at(i) << std::endl;
+	}
+
+	//sugConc.evaluate(&tabExp);
+	std::cout << "Sugeno Conclusion : " << sugConc.evaluate(&tabExp)
+			<< std::endl;
+
+	//SugenoDefuzz et donc sur SugenoThen
+
+	fuzzy::SugenoThen<double> sugThen;
+	std::cout << "Sugeno Then : " << sugThen.evaluate(&test3, &test2)
+			<< std::endl;
+	std::cout << "Premise Value " << sugThen.getPremiseValue() << std::endl;
+
+	// fuzzy::SugenoDefuzz<double> sugDef;
+	// std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
+
+	//Test
+	std::cout << endl << endl
+			<< "Démonstration de l'application pour le calcul de la qualité d'un restaurant "
+			<< std::endl;
+	fuzzy::isTriangle<double> badQuality(-5, 0, 5);
+	fuzzy::isTriangle<double> averageQuality(5, 10, 15);
+	fuzzy::isTriangle<double> excellentQuality(15, 20, 25);
+
+	Expression<double> *r1 = f.newAgg(
+			f.newAgg(
+					f.newThen(f.newIs(val_ptrs, &poor),
+							f.newIs(val_ptrf, &badQuality)),
+					f.newThen(f.newIs(val_ptrs, &good),
+							f.newIs(val_ptrf, &averageQuality))),
+			f.newThen(f.newIs(val_ptrs, &excellent),
+					f.newIs(val_ptrf, &excellentQuality)));
+	Expression<double>* system1 = f.newDefuzz(val_ptrf, r1, 0, 25, 1);
+	float fo;
+	float result, result2;
+	float savFood, savServ;
+	while (true) {
+		std::cout<<"L'univers de définition est de -4.99 à 5 pour les valeurs à saisir " << std::endl;
+		cout << "qualité du repas : ";
+		cin >> fo;
+		if (fo == 5) {
+			fo = 4.999;
+		}
+		if (fo == 0) {
+			fo = 0.00001;
+		}
+		val_ptrs->setValue(fo);
+		savFood = system1->evaluate();
+		cout << "tips -> " << system1->evaluate() << endl;
 		cout << "service : ";
 		cin >> s;
+		if (s == 5) {
+			s = 4.999;
+		}
+		if (s == 0) {
+			s = 0.00001;
+		}
 		val_ptrs->setValue(s);
+		savServ = system->evaluate();
 		cout << "tips -> " << system->evaluate() << endl;
-	};*/
 
+		result = savServ + savFood;
+		result2 = savServ / 2 + savFood;
 
+		if (fo >= s) {
+			if (result >= 23) {
+				std::cout << "C'est un très bon restaurant" << std::endl;
+			} else {
+				if (result >= 20) {
+					std::cout << "C'est un bon restaurant" << std::endl;
+				} else {
+					if (result >= 16) {
+						std::cout << "C'est un restaurant convenable"
+								<< std::endl;
+					} else {
+						std::cout << "C'est un mauvais restaurant" << std::endl;
+					}
+				}
+			}
+		} else {
+			if (result2 >= 16.5) {
+				std::cout << "C'est un très bon restaurant" << std::endl;
+			} else {
+				if (result2 >= 14) {
+					std::cout << "C'est un bon restaurant" << std::endl;
+				} else {
+					std::cout << "C'est un mauvais restaurant" << std::endl;
+				}
+			}
 
-	 // Test sur SugenoConclusion
-	 std::vector<double> _coeff(3);
-	 cout << "Coeff 1 :";
-	 cin >> _coeff[0];
-	 cout << "Coeff 2 :";
-	 cin >> _coeff[1];
-	 cout << "Coeff 3 :";
-	 cin >> _coeff[2];
-	 for(int i=0; i<3; i++){
-	 std::cout << _coeff[i] <<std::endl;
-	 }
+		}
 
-	 core::ValueModel<double> test1(1);
-	 core::ValueModel<double> test2(2);
-	 core::ValueModel<double> test3(5);
-	 fuzzy::SugenoConclusion<double> sugConc(&_coeff);
-	 std::vector<core::Expression<double>* > tabExp;
-	 tabExp.push_back(&test1);
-	 tabExp.push_back(&test2);
-	 tabExp.push_back(&test3);
-	 for(int i=0; i<3; i++){
-	 std::cout << tabExp.at(i) <<std::endl;
-	 }
-
-	 //sugConc.evaluate(&tabExp);
-	 std::cout << "Sugeno Conclusion : " << sugConc.evaluate(&tabExp) << std::endl;
-
-
-	 //SugenoDefuzz et donc sur SugenoThen
-
-	 fuzzy::SugenoThen<double> sugThen;
-	 std::cout << "Sugeno Then : " << sugThen.evaluate(&test3, &test2) << std::endl;
-	 std::cout << "Premise Value " << sugThen.getPremiseValue() << std::endl;
-
-
-
-	 // fuzzy::SugenoDefuzz<double> sugDef;
-	 // std::cout << "Sugeno Defuzz : " << sugDef.evaluate(&tabExp) << std::endl;
-
-
-	  //Test
-
-	  fuzzy::isTriangle<double> badQuality(-5, 0, 5);
-	  fuzzy::isTriangle<double> averageQuality(5, 10, 15);
-	  fuzzy::isTriangle<double> excellentQuality(15, 20, 25);
-
-	  Expression<double> *r1 =
-	  			  f.newAgg(
-	  			  			f.newAgg(
-	  			  					f.newThen(f.newIs(val_ptrs, &poor),
-	  			  							f.newIs(val_ptrf, &badQuality)),
-	  			  					f.newThen(f.newIs(val_ptrs, &good),
-	  			  							f.newIs(val_ptrf, &averageQuality))),
-	  			  			f.newThen(f.newIs(val_ptrs, &excellent),
-	  			  					f.newIs(val_ptrf, &excellentQuality)));
-	  	  Expression<double>* system1 = f.newDefuzz(val_ptrf, r1, 0, 25, 1);
-	  	  float fo;
-	  	  float result, result2;
-	  	  float savFood, savServ;
-	  	while (true) {
-	  			cout << "food : ";
-	  			cin >> fo;
-	  			if(fo==5){
-	  				fo=4.999;
-	  			}
-	  			if(fo==0){
-	  				fo=0.00001;
-	  			}
-	  			val_ptrs->setValue(fo);
-	  			savFood = system1->evaluate();
-	  			cout << "tips -> " << system1->evaluate() << endl;
-	  			cout << "service : ";
-	  			cin >> s;
-	  			if(s==5){
-	  				s=4.999;
-	  			}
-	  			if(s==0){
-	  				s=0.00001;
-	  			}
-	  			val_ptrs->setValue(s);
-	  			savServ = system->evaluate();
-	  			cout << "tips -> " << system->evaluate() << endl;
-
-	  			result = savServ +savFood;
-	  			result2 = savServ/2+savFood;
-
-	  			if(fo >= s){
-	  				if(result>=23){
-	  					std::cout << "C'est un très bon restaurant" << std::endl;
-	  				}
-	  				else{ if(result>=20){
-	  						std::cout << "C'est un bon restaurant" << std::endl;
-	  						} else{ if(result>=16){
-	  							std::cout << "C'est un restaurant convenable" << std::endl;
-	  						} else{
-	  							std::cout << "C'est un mauvais restaurant" << std::endl;
-	  						}
-	  					}
-	  				}
-	  			}
-	  			else{
-	  				if(result2>=16.5){
-	  					std::cout << "C'est un très bon restaurant" << std::endl;
-	  				}
-	  				else{
-	  					if(result2>=14){
-	  						std::cout << "C'est un bon restaurant" << std::endl;
-	  					} else{
-	  						std::cout << "C'est un mauvais restaurant" << std::endl;
-	  					}
-	  				}
-
-	  			}
-
-	  	}
-
+	}
 
 	return 0;
 }
