@@ -216,7 +216,7 @@ int main() {
 		}
 		val_ptrs->setValue(fo);
 		savFood = system1->evaluate();
-		cout << "tips -> " << system1->evaluate() << endl;
+		//cout << "tips -> " << system1->evaluate() << endl;
 		cout << "service : ";
 		cin >> s;
 		if (s == 5) {
@@ -227,9 +227,10 @@ int main() {
 		}
 		val_ptrs->setValue(s);
 		savServ = system->evaluate();
-		cout << "tips -> " << system->evaluate() << endl;
+		//cout << "tips -> " << system->evaluate() << endl;
 
 		result = savServ + savFood;
+
 		result2 = savServ / 2 + savFood;
 
 		if (fo >= s) {
